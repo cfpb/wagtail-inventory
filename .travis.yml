@@ -1,0 +1,32 @@
+language: python
+cache: pip
+
+matrix:
+  include:
+    - env: TOXENV=flake8
+      python: 3.5
+    - env: TOXENV=py27-dj18-wag18
+      python: 2.7
+    - env: TOXENV=py27-dj18-wag19
+      python: 2.7
+    - env: TOXENV=py27-dj110-wag18
+      python: 2.7
+    - env: TOXENV=py27-dj110-wag19
+      python: 2.7
+    - env: TOXENV=py35-dj18-wag18
+      python: 3.5
+    - env: TOXENV=py35-dj18-wag19
+      python: 3.5
+    - env: TOXENV=py35-dj110-wag18
+      python: 3.5
+    - env: TOXENV=py35-dj110-wag19
+      python: 3.5
+
+install:
+  pip install tox coveralls
+
+script:
+  tox
+
+after_success:
+  coveralls
