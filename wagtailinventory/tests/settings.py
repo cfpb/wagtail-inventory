@@ -10,7 +10,7 @@ SECRET_KEY = 'not needed'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'wagtailinventory',
+        'NAME': 'wagtailinventory.sqlite',
     },
 }
 
@@ -25,7 +25,6 @@ INSTALLED_APPS = (
 
     'wagtail.contrib.modeladmin',
     'wagtail.contrib.settings',
-    'wagtail.tests.testapp',
     'wagtail.wagtailadmin',
     'wagtail.wagtaildocs',
     'wagtail.wagtailcore',
@@ -35,6 +34,7 @@ INSTALLED_APPS = (
     'wagtail.wagtailusers',
 
     'wagtailinventory',
+    'wagtailinventory.tests.testapp',
 )
 
 
