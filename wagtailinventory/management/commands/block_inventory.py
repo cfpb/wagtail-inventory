@@ -1,6 +1,7 @@
 from __future__ import print_function
 
 from django.core.management import BaseCommand
+from tqdm import tqdm
 from wagtail.wagtailcore.models import Page
 
 from wagtailinventory.helpers import (
@@ -12,7 +13,5 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         delete_page_inventory()
 
-        count = Page.objects.count()
-        for i, page in enumerate(Page.objects.all()):
-            print(i + 1, '/', count, page)
+        for page in tqdm(Page.objects.all()):
             create_page_inventory(page)

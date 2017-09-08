@@ -1,4 +1,6 @@
-from wagtail.wagtailcore.blocks import StreamValue, StructValue
+from itertools import chain
+
+from wagtail.wagtailcore.blocks import ListBlock, StructBlock
 from wagtail.wagtailcore.fields import StreamField
 
 from wagtailinventory.models import PageBlock
@@ -8,52 +10,38 @@ def get_block_name(block):
     return block.__module__ + '.' + block.__class__.__name__
 
 
-def create_page_block(page, block, value):
-    page_block, _ = PageBlock.objects.get_or_create(
-        page=page,
-        block=get_block_name(block)
-    )
-
-    page_blocks = [page_block]
-
-    if isinstance(value, list):
-        for subvalue in value:
-            page_blocks.extend(create_page_block(
-                page,
-                block.child_block,
-                subvalue
-            ))
-    elif isinstance(value, StructValue):
-        for key, subvalue in value.bound_blocks.items():
-            page_blocks.extend(create_page_block(
-                page,
-                block.child_blocks[key],
-                subvalue
-            ))
-    elif isinstance(value, StreamValue):
-        for subvalue in value:
-            page_blocks.extend(create_page_block(
-                page,
-                subvalue.block,
-                subvalue.value
-            ))
-
-    return page_blocks
-
-
-def create_page_inventory(page):
-    page_blocks = []
+def get_page_blocks(page):
+    blocks = []
 
     for field in page.specific._meta.fields:
         if not isinstance(field, StreamField):
             continue
 
-        value = getattr(page.specific, field.name)
+        for stream_child in getattr(page.specific, field.name):
+            blocks.extend(get_field_blocks(stream_child))
 
-        for item in value:
-            page_blocks.extend(create_page_block(page, item.block, item.value))
+    return sorted(set(map(get_block_name, blocks)))
 
-    return page_blocks
+
+def get_field_blocks(value):
+    block = getattr(value, 'block', None)
+    blocks = [block] if block else []
+
+    if isinstance(value, list):
+        child_blocks = value
+    if isinstance(block, StructBlock):
+        if hasattr(value, 'bound_blocks'):
+            child_blocks = value.bound_blocks.values()
+        else:
+            child_blocks = [value.value]
+    elif isinstance(block, ListBlock):
+        child_blocks = value.value
+    else:
+        child_blocks = []
+
+    blocks.extend(chain(*map(get_field_blocks, child_blocks)))
+
+    return blocks
 
 
 def get_page_inventory(page=None):
@@ -63,6 +51,15 @@ def get_page_inventory(page=None):
         inventory = inventory.filter(page=page)
 
     return inventory
+
+
+def create_page_inventory(page):
+    page_blocks = get_page_blocks(page)
+
+    return [
+        PageBlock.objects.get_or_create(page=page, block=block)[0]
+        for block in page_blocks
+    ]
 
 
 def delete_page_inventory(page=None):
