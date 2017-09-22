@@ -37,5 +37,6 @@ setup(
     extras_require={
         'testing': testing_extras,
     },
-    description=short_description
+    description=short_description,
+    long_description=open('README.rst').read()
 )
