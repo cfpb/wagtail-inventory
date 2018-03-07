@@ -4,7 +4,7 @@ from setuptools import find_packages, setup
 install_requires = [
     'Django>=1.8,<1.12',
     'tqdm==4.15.0',
-    'wagtail>=1.8,<1.13',
+    'wagtail>=1.8,<1.14',
 ]
 
 
