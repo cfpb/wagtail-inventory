@@ -49,13 +49,13 @@ Compatibility
 This code has been tested for compatibility with:
 
 * Python 2.7, 3.5, 3.6
-* Django 1.8, 1.11
-* Wagtail 1.8, 1.10, 1.12
+* Django 1.8 - 1.11
+* Wagtail 1.8 - 1.13
 
 Testing
 -------
 
-Run unit tests with ``tox`` to test against all supported package combinations.
+Run unit tests with ``tox`` to test against select supported package combinations.
 
 Open source licensing info
 --------------------------
