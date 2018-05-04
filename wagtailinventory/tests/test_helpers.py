@@ -4,7 +4,8 @@ from django.test import TestCase
 
 from wagtailinventory.helpers import get_page_blocks
 from wagtailinventory.tests.testapp.models import (
-    MultipleStreamFieldsPage, NoStreamFieldsPage, SingleStreamFieldPage
+    MultipleStreamFieldsPage, NestedStreamBlockPage, NoStreamFieldsPage,
+    SingleStreamFieldPage
 )
 
 
@@ -119,5 +120,29 @@ class TestGetPageBlocks(TestCase):
                 'wagtailinventory.tests.testapp.blocks.Atom',
                 'wagtailinventory.tests.testapp.blocks.Molecule',
                 'wagtailinventory.tests.testapp.blocks.Organism',
+            ]
+        )
+
+    def test_streamfield_with_child_stream_block(self):
+        page = self.make_page_with_streamfields(
+            NestedStreamBlockPage,
+            content=[
+                {
+                    'type': 'streamblock',
+                    'value': [
+                        {
+                            'type': 'text',
+                            'value': 'Test content',
+                        },
+                    ],
+                }
+            ]
+        )
+
+        self.assertEqual(
+            get_page_blocks(page),
+            [
+                'wagtail.wagtailcore.blocks.field_block.CharBlock',
+                'wagtail.wagtailcore.blocks.stream_block.StreamBlock',
             ]
         )
