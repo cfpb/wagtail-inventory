@@ -1,6 +1,6 @@
 from itertools import chain
 
-from wagtail.wagtailcore.blocks import ListBlock, StructBlock
+from wagtail.wagtailcore.blocks import ListBlock, StreamBlock, StructBlock
 from wagtail.wagtailcore.fields import StreamField
 
 from wagtailinventory.models import PageBlock
@@ -35,6 +35,8 @@ def get_field_blocks(value):
         else:
             child_blocks = [value.value]
     elif isinstance(block, ListBlock):
+        child_blocks = value.value
+    elif isinstance(block, StreamBlock):
         child_blocks = value.value
     else:
         child_blocks = []

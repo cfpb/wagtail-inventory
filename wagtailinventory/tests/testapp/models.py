@@ -44,3 +44,15 @@ class MultipleStreamFieldsPage(Page):
         FieldPanel('first'),
         FieldPanel('second'),
     ]
+
+
+class NestedStreamBlockPage(Page):
+    content = StreamField([
+        ('streamblock', wagtail_blocks.StreamBlock([
+            ('text', wagtail_blocks.CharBlock()),
+        ])),
+    ])
+
+    content_panels = [
+        FieldPanel('content'),
+    ]
