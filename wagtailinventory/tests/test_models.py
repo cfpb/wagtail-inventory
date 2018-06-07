@@ -2,7 +2,11 @@ from __future__ import absolute_import, unicode_literals
 
 from django.test import TestCase
 
-from wagtail.wagtailcore.models import Page
+try:
+    from wagtail.core.models import Page
+except ImportError:  # pragma: no cover; fallback for Wagtail <2.0 
+    from wagtail.wagtailcore.models import Page
+
 from wagtailinventory.models import PageBlock
 
 

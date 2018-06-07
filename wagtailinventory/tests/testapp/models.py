@@ -1,8 +1,14 @@
 from django.db import models
 from wagtail.wagtailadmin.edit_handlers import FieldPanel
-from wagtail.wagtailcore import blocks as wagtail_blocks
-from wagtail.wagtailcore.fields import StreamField
-from wagtail.wagtailcore.models import Page
+
+try:
+    from wagtail.core import blocks as wagtail_blocks
+    from wagtail.core.fields import StreamField
+    from wagtail.core.models import Page
+except ImportError:  # pragma: no cover; fallback for Wagtail <2.0 
+    from wagtail.wagtailcore import blocks as wagtail_blocks
+    from wagtail.wagtailcore.fields import StreamField
+    from wagtail.wagtailcore.models import Page
 
 from wagtailinventory.tests.testapp import blocks
 
