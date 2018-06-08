@@ -2,8 +2,13 @@ from __future__ import absolute_import, unicode_literals
 
 from django.conf.urls import include, url
 from django.core.urlresolvers import reverse
-from wagtail.wagtailadmin.menu import MenuItem
-from wagtail.wagtailcore import hooks
+
+try:
+    from wagtail.core import hooks
+    from wagtail.admin.menu import MenuItem
+except ImportError:  # pragma: no cover; fallback for Wagtail <2.0
+    from wagtail.wagtailcore import hooks
+    from wagtail.wagtailadmin.menu import MenuItem
 
 from wagtailinventory.helpers import (
     create_page_inventory, delete_page_inventory, update_page_inventory
