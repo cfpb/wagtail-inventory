@@ -31,10 +31,12 @@ class PageBlockQueryForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         super(PageBlockQueryForm, self).__init__(*args, **kwargs)
-        block_choices = BLANK_CHOICE_DASH + [
-            (b, b) for b in
-            PageBlock.objects.values_list('block', flat=True).distinct()
-        ]
+        blocks = PageBlock.objects \
+            .values_list('block', flat=True) \
+            .distinct() \
+            .order_by('block')
+
+        block_choices = BLANK_CHOICE_DASH + [(b, b) for b in blocks]
         self.fields['block'].choices = block_choices
 
 
