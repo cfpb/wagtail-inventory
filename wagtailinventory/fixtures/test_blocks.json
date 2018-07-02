@@ -1,0 +1,220 @@
+[
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$100000$RKUa1ZdWARZL$rG55GlxBES3r1bDuInG/z9IthbzqS43lehVwXGx4Ke4=",
+        "last_login": "2018-06-11T11:43:09.976",
+        "is_superuser": true,
+        "username": "admin",
+        "first_name": "",
+        "last_name": "",
+        "email": "admin@admin.admin",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2018-06-11T11:42:56.375",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "wagtailcore.page",
+    "pk": 3,
+    "fields": {
+        "path": "000100010001",
+        "depth": 3,
+        "numchild": 0,
+        "title": "Single StreamField page with no content",
+        "draft_title": "Single StreamField page with no content",
+        "slug": "single-streamfield-page-no-content",
+        "content_type": [
+            "testapp",
+            "singlestreamfieldpage"
+        ],
+        "live": false,
+        "has_unpublished_changes": true,
+        "url_path": "/home/single-streamfield-page-no-content/",
+        "owner": [
+            "admin"
+        ],
+        "seo_title": "",
+        "show_in_menus": false,
+        "search_description": "",
+        "go_live_at": null,
+        "expire_at": null,
+        "expired": false,
+        "locked": false,
+        "first_published_at": null,
+        "last_published_at": null,
+        "latest_revision_created_at": "2018-06-11T11:43:21.991",
+        "live_revision": null
+    }
+},
+{
+    "model": "wagtailcore.page",
+    "pk": 4,
+    "fields": {
+        "path": "000100010002",
+        "depth": 3,
+        "numchild": 0,
+        "title": "Single StreamField page with content",
+        "draft_title": "Single StreamField page with content",
+        "slug": "single-streamfield-page-content",
+        "content_type": [
+            "testapp",
+            "singlestreamfieldpage"
+        ],
+        "live": false,
+        "has_unpublished_changes": true,
+        "url_path": "/home/single-streamfield-page-content/",
+        "owner": [
+            "admin"
+        ],
+        "seo_title": "",
+        "show_in_menus": false,
+        "search_description": "",
+        "go_live_at": null,
+        "expire_at": null,
+        "expired": false,
+        "locked": false,
+        "first_published_at": null,
+        "last_published_at": null,
+        "latest_revision_created_at": "2018-06-11T11:43:38.252",
+        "live_revision": null
+    }
+},
+{
+    "model": "wagtailcore.page",
+    "pk": 5,
+    "fields": {
+        "path": "000100010003",
+        "depth": 3,
+        "numchild": 0,
+        "title": "Multiple StreamFields page",
+        "draft_title": "Multiple StreamFields page",
+        "slug": "multiple-streamfields-page",
+        "content_type": [
+            "testapp",
+            "multiplestreamfieldspage"
+        ],
+        "live": false,
+        "has_unpublished_changes": true,
+        "url_path": "/home/multiple-streamfields-page/",
+        "owner": [
+            "admin"
+        ],
+        "seo_title": "",
+        "show_in_menus": false,
+        "search_description": "",
+        "go_live_at": null,
+        "expire_at": null,
+        "expired": false,
+        "locked": false,
+        "first_published_at": null,
+        "last_published_at": null,
+        "latest_revision_created_at": "2018-06-11T11:44:22.660",
+        "live_revision": null
+    }
+},
+{
+    "model": "wagtailcore.page",
+    "pk": 6,
+    "fields": {
+        "path": "000100010004",
+        "depth": 3,
+        "numchild": 0,
+        "title": "Nested StreamBlock page",
+        "draft_title": "Nested StreamBlock page",
+        "slug": "nested-streamblock-page",
+        "content_type": [
+            "testapp",
+            "nestedstreamblockpage"
+        ],
+        "live": false,
+        "has_unpublished_changes": true,
+        "url_path": "/home/nested-streamblock-page/",
+        "owner": [
+            "admin"
+        ],
+        "seo_title": "",
+        "show_in_menus": false,
+        "search_description": "",
+        "go_live_at": null,
+        "expire_at": null,
+        "expired": false,
+        "locked": false,
+        "first_published_at": null,
+        "last_published_at": null,
+        "latest_revision_created_at": "2018-06-11T11:44:47.772",
+        "live_revision": null
+    }
+},
+{
+    "model": "wagtailcore.page",
+    "pk": 7,
+    "fields": {
+        "path": "000100010005",
+        "depth": 3,
+        "numchild": 0,
+        "title": "No StreamFields on this page",
+        "draft_title": "No StreamFields on this page",
+        "slug": "no-streamfields-page",
+        "content_type": [
+            "testapp",
+            "nostreamfieldspage"
+        ],
+        "live": false,
+        "has_unpublished_changes": true,
+        "url_path": "/home/no-streamfields-page/",
+        "owner": [
+            "admin"
+        ],
+        "seo_title": "",
+        "show_in_menus": false,
+        "search_description": "",
+        "go_live_at": null,
+        "expire_at": null,
+        "expired": false,
+        "locked": false,
+        "first_published_at": null,
+        "last_published_at": null,
+        "latest_revision_created_at": "2018-06-11T11:45:01.819",
+        "live_revision": null
+    }
+},
+{
+    "model": "testapp.nostreamfieldspage",
+    "pk": 7,
+    "fields": {
+        "content": "Only text."
+    }
+},
+{
+    "model": "testapp.singlestreamfieldpage",
+    "pk": 3,
+    "fields": {
+        "content": "[]"
+    }
+},
+{
+    "model": "testapp.singlestreamfieldpage",
+    "pk": 4,
+    "fields": {
+        "content": "[{\"type\": \"atom\", \"value\": {\"title\": \"Atom\"}, \"id\": \"07422894-413b-4528-8f67-d7113b3bfe7a\"}]"
+    }
+},
+{
+    "model": "testapp.multiplestreamfieldspage",
+    "pk": 5,
+    "fields": {
+        "first": "[{\"type\": \"molecule\", \"value\": {\"title\": \"Molecule 1\", \"atoms\": [{\"title\": \"Atom 1\"}]}, \"id\": \"1596e627-b83d-4e33-83bf-78d741cc1456\"}]",
+        "second": "[{\"type\": \"organism\", \"value\": {\"molecules\": [{\"title\": \"Molecule 2\", \"atoms\": [{\"title\": \"Atom 2\"}]}]}, \"id\": \"7f9b97e9-fd2a-4720-a0a5-85f097c170ed\"}]"
+    }
+},
+{
+    "model": "testapp.nestedstreamblockpage",
+    "pk": 6,
+    "fields": {
+        "content": "[{\"type\": \"streamblock\", \"value\": [{\"type\": \"text\", \"value\": \"Text 1\", \"id\": \"66b7fe1b-47e5-461c-b032-f7ee28733ac0\"}], \"id\": \"0bf78fa8-2bfa-4d6b-b146-c93a4d89bc4f\"}, {\"type\": \"streamblock\", \"value\": [{\"type\": \"atom\", \"value\": {\"title\": \"Text 2\"}, \"id\": \"a5b900bd-5c10-42ef-b304-c826b25a915e\"}], \"id\": \"4b80a8f0-e202-4ac9-b93a-e1fb1d10235e\"}]"
+    }
+}
+]

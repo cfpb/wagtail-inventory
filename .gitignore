@@ -49,6 +49,7 @@ __pycache__/
 *.py[cod]
 .env
 .eggs
+.python-version
 
 # Django #
 #################

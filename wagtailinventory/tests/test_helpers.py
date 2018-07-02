@@ -1,148 +1,62 @@
-import json
-
 from django.test import TestCase
 
+import wagtail
+
+try:
+    from wagtail.core.models import Page
+except ImportError:  # pragma: no cover; fallback for Wagtail <2.0
+    from wagtail.wagtailcore.models import Page
+
 from wagtailinventory.helpers import get_page_blocks
-from wagtailinventory.tests.testapp.models import (
-    MultipleStreamFieldsPage, NestedStreamBlockPage, NoStreamFieldsPage,
-    SingleStreamFieldPage
-)
+
+
+if wagtail.VERSION[0] > 1:
+    CORE_BLOCKS = 'wagtail.core.blocks'
+else:  # pragma: no cover' fallback for Wagtail <2.0
+    CORE_BLOCKS = 'wagtail.wagtailcore.blocks'
 
 
 class TestGetPageBlocks(TestCase):
+    fixtures = ['test_blocks.json']
+
     def test_page_with_no_streamfields_returns_empty_list(self):
-        page = NoStreamFieldsPage(title='test', slug='test', content='test')
+        page = Page.objects.get(slug='no-streamfields-page')
         self.assertEqual(get_page_blocks(page), [])
 
-    def make_page_with_streamfields(self, page_cls, **streamfields):
-        page_kwargs = {
-            'title': 'test',
-            'slug': 'test',
-        }
-
-        for field, content in streamfields.items():
-            page_kwargs.update({field: json.dumps(content)})
-
-        return page_cls(**page_kwargs)
-
     def test_empty_streamfield_returns_empty_list(self):
-        page = self.make_page_with_streamfields(SingleStreamFieldPage)
+        page = Page.objects.get(slug='single-streamfield-page-no-content')
         self.assertEqual(get_page_blocks(page), [])
 
     def test_streamfield_with_single_block(self):
-        page = self.make_page_with_streamfields(
-            SingleStreamFieldPage,
-            content=[{'type': 'text', 'value': 'foo'}]
-        )
-
-        self.assertEqual(
-            get_page_blocks(page),
-            ['wagtail.wagtailcore.blocks.field_block.CharBlock']
-        )
-
-    def test_streamfield_with_multiple_blocks_of_same_type(self):
-        page = self.make_page_with_streamfields(
-            SingleStreamFieldPage,
-            content=[
-                {'type': 'text', 'value': 'foo'},
-                {'type': 'text', 'value': 'bar'},
-            ]
-        )
-
-        self.assertEqual(
-            get_page_blocks(page),
-            ['wagtail.wagtailcore.blocks.field_block.CharBlock']
-        )
-
-    def test_streamfield_with_structblock_includes_nested_blocks(self):
-        page = self.make_page_with_streamfields(
-            SingleStreamFieldPage,
-            content=[
-                {'type': 'atom', 'value': {'title': 'foo'}},
-            ]
-        )
-
+        page = Page.objects.get(slug='single-streamfield-page-content')
         self.assertEqual(
             get_page_blocks(page),
             [
-                'wagtail.wagtailcore.blocks.field_block.CharBlock',
+                CORE_BLOCKS + '.field_block.CharBlock',
                 'wagtailinventory.tests.testapp.blocks.Atom',
-            ]
-        )
-
-    def test_streamfield_with_deeply_nested_blocks(self):
-        page = self.make_page_with_streamfields(
-            SingleStreamFieldPage,
-            content=[
-                {
-                    'type': 'organism',
-                    'value': {
-                        'molecules': [
-                            {'title': 'foo', 'atoms': []},
-                            {'title': 'bar', 'atoms': []},
-                        ],
-                    },
-                },
-            ]
-        )
-
-        self.assertEqual(
-            get_page_blocks(page),
-            [
-                'wagtail.wagtailcore.blocks.field_block.CharBlock',
-                'wagtail.wagtailcore.blocks.list_block.ListBlock',
-                'wagtailinventory.tests.testapp.blocks.Molecule',
-                'wagtailinventory.tests.testapp.blocks.Organism',
-            ]
+            ],
         )
 
     def test_multiple_streamfields(self):
-        page = self.make_page_with_streamfields(
-            MultipleStreamFieldsPage,
-            first=[{'type': 'atom', 'value': 'foo'}],
-            second=[
-                {
-                    'type': 'organism',
-                    'value': {
-                        'molecules': [
-                            {'title': 'foo', 'atoms': []},
-                        ]
-                    }
-                },
-            ]
-        )
-
+        page = Page.objects.get(slug='multiple-streamfields-page')
         self.assertEqual(
             get_page_blocks(page),
             [
-                'wagtail.wagtailcore.blocks.field_block.CharBlock',
-                'wagtail.wagtailcore.blocks.list_block.ListBlock',
+                CORE_BLOCKS + '.field_block.CharBlock',
+                CORE_BLOCKS + '.list_block.ListBlock',
                 'wagtailinventory.tests.testapp.blocks.Atom',
                 'wagtailinventory.tests.testapp.blocks.Molecule',
                 'wagtailinventory.tests.testapp.blocks.Organism',
             ]
         )
 
-    def test_streamfield_with_child_stream_block(self):
-        page = self.make_page_with_streamfields(
-            NestedStreamBlockPage,
-            content=[
-                {
-                    'type': 'streamblock',
-                    'value': [
-                        {
-                            'type': 'text',
-                            'value': 'Test content',
-                        },
-                    ],
-                }
-            ]
-        )
-
+    def test_nested_streamblocks(self):
+        page = Page.objects.get(slug='nested-streamblock-page')
         self.assertEqual(
             get_page_blocks(page),
             [
-                'wagtail.wagtailcore.blocks.field_block.CharBlock',
-                'wagtail.wagtailcore.blocks.stream_block.StreamBlock',
+                CORE_BLOCKS + '.field_block.CharBlock',
+                CORE_BLOCKS + '.stream_block.StreamBlock',
+                'wagtailinventory.tests.testapp.blocks.Atom',
             ]
         )

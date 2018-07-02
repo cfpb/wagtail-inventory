@@ -1,7 +1,11 @@
 from itertools import chain
 
-from wagtail.wagtailcore.blocks import ListBlock, StreamBlock, StructBlock
-from wagtail.wagtailcore.fields import StreamField
+try:
+    from wagtail.core.blocks import ListBlock, StreamBlock, StructBlock
+    from wagtail.core.fields import StreamField  # pragma: no cover
+except ImportError:  # pragma: no cover; fallback for Wagtail <2.0
+    from wagtail.wagtailcore.blocks import ListBlock, StreamBlock, StructBlock
+    from wagtail.wagtailcore.fields import StreamField
 
 from wagtailinventory.models import PageBlock
 

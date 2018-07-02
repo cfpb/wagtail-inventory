@@ -1,7 +1,15 @@
 from __future__ import absolute_import, unicode_literals
 
-import django
+import os
 
+import django
+import wagtail
+
+
+PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(PROJECT_DIR)
+
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -14,29 +22,54 @@ DATABASES = {
     },
 }
 
-INSTALLED_APPS = (
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.staticfiles',
+if wagtail.VERSION >= (2, 0):
+    WAGTAIL_APPS = (
+        'wagtail.contrib.forms',
+        'wagtail.contrib.settings',
+        'wagtail.admin',
+        'wagtail.core',
+        'wagtail.documents',
+        'wagtail.images',
+        'wagtail.sites',
+        'wagtail.users',
+    )
 
-    'taggit',
+    WAGTAIL_MIDDLEWARE = (
+        'wagtail.core.middleware.SiteMiddleware',
+    )
 
-    'wagtail.contrib.modeladmin',
-    'wagtail.contrib.settings',
-    'wagtail.wagtailadmin',
-    'wagtail.wagtaildocs',
-    'wagtail.wagtailcore',
-    'wagtail.wagtailforms',
-    'wagtail.wagtailimages',
-    'wagtail.wagtailsites',
-    'wagtail.wagtailusers',
+    WAGTAILADMIN_RICH_TEXT_EDITORS = {
+        'default': {
+            'WIDGET': 'wagtail.admin.rich_text.DraftailRichTextArea'
+        },
+        'custom': {
+            'WIDGET': 'wagtail.tests.testapp.rich_text.CustomRichTextArea'
+        },
+    }
+else:
+    WAGTAIL_APPS = (
+        'wagtail.contrib.settings',
+        'wagtail.wagtailadmin',
+        'wagtail.wagtailcore',
+        'wagtail.wagtaildocs',
+        'wagtail.wagtailforms',
+        'wagtail.wagtailimages',
+        'wagtail.wagtailsites',
+        'wagtail.wagtailusers',
+    )
 
-    'wagtailinventory',
-    'wagtailinventory.tests.testapp',
-)
+    WAGTAIL_MIDDLEWARE = (
+        'wagtail.wagtailcore.middleware.SiteMiddleware',
+    )
 
+    WAGTAILADMIN_RICH_TEXT_EDITORS = {
+        'default': {
+            'WIDGET': 'wagtail.wagtailadmin.rich_text.HalloRichTextArea',
+        },
+        'custom': {
+            'WIDGET': 'wagtail.tests.testapp.rich_text.CustomRichTextArea'
+        },
+    }
 
 if django.VERSION >= (1, 10):
     MIDDLEWARE = (
@@ -44,10 +77,9 @@ if django.VERSION >= (1, 10):
         'django.contrib.sessions.middleware.SessionMiddleware',
         'django.middleware.csrf.CsrfViewMiddleware',
         'django.contrib.auth.middleware.AuthenticationMiddleware',
-        'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
         'django.contrib.messages.middleware.MessageMiddleware',
         'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    )
+    ) + WAGTAIL_MIDDLEWARE
 else:
     MIDDLEWARE_CLASSES = (
         'django.middleware.common.CommonMiddleware',
@@ -57,9 +89,26 @@ else:
         'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
         'django.contrib.messages.middleware.MessageMiddleware',
         'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    )
+    ) + WAGTAIL_MIDDLEWARE
 
+INSTALLED_APPS = (
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.staticfiles',
+
+    'taggit',
+) + WAGTAIL_APPS + (
+    'wagtailinventory',
+    'wagtailinventory.tests.testapp',
+)
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 TEMPLATES = [
     {
@@ -81,11 +130,4 @@ TEMPLATES = [
 
 WAGTAIL_SITE_NAME = 'Test Site'
 
-WAGTAILADMIN_RICH_TEXT_EDITORS = {
-    'default': {
-        'WIDGET': 'wagtail.wagtailadmin.rich_text.HalloRichTextArea'
-    },
-    'custom': {
-        'WIDGET': 'wagtail.tests.testapp.rich_text.CustomRichTextArea'
-    },
-}
+ROOT_URLCONF = 'wagtailinventory.tests.urls'

@@ -4,7 +4,11 @@ from django.http import HttpResponseBadRequest
 from django.shortcuts import render
 from django.views.generic import View
 from wagtail.utils.pagination import paginate, replace_page_in_query
-from wagtail.wagtailcore.models import Page
+
+try:
+    from wagtail.core.models import Page
+except ImportError:  # pragma: no cover; fallback for Wagtail <2.0
+    from wagtail.wagtailcore.models import Page
 
 from wagtailinventory.forms import PageBlockQueryFormSet
 
