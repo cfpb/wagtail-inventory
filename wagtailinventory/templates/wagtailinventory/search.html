@@ -32,7 +32,7 @@
       </h2>
 
       {% include "wagtailadmin/pages/listing/_list_explore.html" with show_parent=1 allow_navigation=0 %}
-      {% paginate pages base_url=base_url classnames="navigate-pages" %}
+      {% include "wagtailadmin/shared/pagination_nav.html" with items=pages %}
     </div>
   {% else %}
     <div class="nice-padding">

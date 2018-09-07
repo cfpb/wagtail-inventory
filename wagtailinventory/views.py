@@ -3,7 +3,7 @@ from __future__ import absolute_import, unicode_literals
 from django.http import HttpResponseBadRequest
 from django.shortcuts import render
 from django.views.generic import View
-from wagtail.utils.pagination import paginate, replace_page_in_query
+from wagtail.utils.pagination import paginate
 
 try:
     from wagtail.core.models import Page
@@ -33,7 +33,6 @@ class SearchView(View):
             page.can_choose = True
 
         return render(request, self.template_name, {
-            'base_url': replace_page_in_query(request.GET.urlencode(), None),
             'formset': formset,
             'pages': pages,
         })
