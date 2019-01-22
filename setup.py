@@ -2,9 +2,9 @@ from setuptools import find_packages, setup
 
 
 install_requires = [
-    'Django>=1.8,<2.1',
+    'Django>=1.8,<2.2',
     'tqdm==4.15.0',
-    'wagtail>=1.8,<2.2',
+    'wagtail>=1.8,<2.5',
 ]
 
 
