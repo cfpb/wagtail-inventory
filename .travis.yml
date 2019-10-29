@@ -12,13 +12,11 @@ matrix:
       python: 3.6
     - env: TOXENV=py36-dj20-wag20
       python: 3.6
-    - env: TOXENV=py36-dj20-wag24
+    - env: TOXENV=py36-dj20-wag23
       python: 3.6
-    - env: TOXENV=py36-dj20-wag25
+    - env: TOXENV=py36-dj20-wag26
       python: 3.6
-    - env: TOXENV=py36-dj21-wag24
-      python: 3.6
-    - env: TOXENV=py36-dj22-wag25
+    - env: TOXENV=py36-dj22-wag26
       python: 3.6
     - env: TOXENV=flake8
       python: 3.6

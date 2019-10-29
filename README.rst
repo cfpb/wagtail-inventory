@@ -50,7 +50,7 @@ This code has been tested for compatibility with:
 
 * Python 2.7, 3.5, 3.6
 * Django 1.8 - 1.11, 2.0 - 2.2
-* Wagtail 1.8 - 1.13, 2.0 - 2.5
+* Wagtail 1.8 - 1.13, 2.0 - 2.6
 
 Testing
 -------
