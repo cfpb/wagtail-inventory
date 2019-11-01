@@ -3,7 +3,8 @@ from __future__ import absolute_import, unicode_literals
 from django.http import HttpResponseBadRequest
 from django.shortcuts import render
 from django.views.generic import View
-from wagtail.utils.pagination import paginate
+
+import wagtail
 
 try:
     from wagtail.core.models import Page
@@ -22,12 +23,21 @@ class SearchView(View):
             if not formset.is_valid():
                 return HttpResponseBadRequest('invalid query')
 
-            pages = formset.get_query()
+            queryset = formset.get_query()
         else:
             formset = PageBlockQueryFormSet()
-            pages = Page.objects.all()
+            queryset = Page.objects.all()
 
-        paginator, pages = paginate(request, pages.order_by('title'))
+        queryset = queryset.order_by('title')
+
+        # https://docs.wagtail.io/en/latest/releases/2.5.html#changes-to-admin-pagination-helpers
+        if wagtail.VERSION < (2, 5):
+            from wagtail.utils.pagination import paginate
+            paginator, pages = paginate(request, queryset)
+        else:  # pragma: no cover
+            from django.core.paginator import Paginator
+            paginator = Paginator(queryset, per_page=20)
+            pages = paginator.get_page(request.GET.get('p'))
 
         for page in pages:
             page.can_choose = True

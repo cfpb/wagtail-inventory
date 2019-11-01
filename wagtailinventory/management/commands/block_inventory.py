@@ -15,5 +15,10 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         delete_page_inventory()
 
-        for page in tqdm(Page.objects.all()):
+        pages = Page.objects.all()
+
+        if options.get('verbosity'):  # pragma: no cover
+            pages = tqdm(pages)
+
+        for page in pages:
             create_page_inventory(page)
