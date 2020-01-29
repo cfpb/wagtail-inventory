@@ -48,9 +48,9 @@ Compatibility
 
 This code has been tested for compatibility with:
 
-* Python 3.5, 3.6
-* Django 1.8 - 1.11, 2.0 - 2.2
-* Wagtail 1.8 - 1.13, 2.0 - 2.7
+* Python 3.6, 3.7, 3.8
+* Django 1.11, 2.0 - 2.2
+* Wagtail 1.13, 2.0 - 2.7
 
 Testing
 -------
