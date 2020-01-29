@@ -4,8 +4,6 @@ cache: pip
 
 matrix:
   include:
-    - env: TOXENV=py27-dj111-wag113
-      python: 2.7
     - env: TOXENV=py36-dj111-wag113
       python: 3.6
     - env: TOXENV=py36-dj111-wag20
@@ -14,9 +12,9 @@ matrix:
       python: 3.6
     - env: TOXENV=py36-dj20-wag23
       python: 3.6
-    - env: TOXENV=py36-dj20-wag26
+    - env: TOXENV=py36-dj20-wag27
       python: 3.6
-    - env: TOXENV=py36-dj22-wag26
+    - env: TOXENV=py36-dj22-wag27
       python: 3.6
     - env: TOXENV=flake8
       python: 3.6
