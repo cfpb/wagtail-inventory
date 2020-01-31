@@ -16,10 +16,10 @@ matrix:
       python: 3.6
     - env: TOXENV=py36-dj22-wag27
       python: 3.6
-    - env: TOXENV=py37-dj20-wag27
-      python: 3.7
-    - env: TOXENV=py37-dj22-wag27
-      python: 3.7
+    - env: TOXENV=py38-dj20-wag27
+      python: 3.8
+    - env: TOXENV=py38-dj22-wag27
+      python: 3.8
     - env: TOXENV=flake8
       python: 3.6
 
