@@ -48,9 +48,12 @@ Compatibility
 
 This code has been tested for compatibility with:
 
-* Python 2.7, 3.5, 3.6
-* Django 1.8 - 1.11, 2.0 - 2.2
-* Wagtail 1.8 - 1.13, 2.0 - 2.6
+* Python 3.6, 3.8
+* Django 1.11, 2.0, 2.2
+* Wagtail 1.13, 2.3, 2.8
+
+It should be compatible at all intermediate versions, as well.
+If you find that it is not, please [file an issue](issues/new).
 
 Testing
 -------
