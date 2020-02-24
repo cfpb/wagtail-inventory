@@ -19,16 +19,15 @@ testing_extras = [
     'mock>=1.0.0',
 ]
 
-
-short_description = 'Lookup Wagtail pages by block content'
-
-
 setup(
     name='wagtail-inventory',
     url='https://github.com/cfpb/wagtail-inventory',
     author='CFPB',
     author_email='tech@cfpb.gov',
+    description='Lookup Wagtail pages by block content',
+    long_description=open('README.rst').read(),
     license='CCO',
+    version='1.0',
     version_format='{tag}.dev{commitcount}+{gitsha}',
     include_package_data=True,
     packages=find_packages(),
@@ -37,8 +36,6 @@ setup(
     extras_require={
         'testing': testing_extras,
     },
-    description=short_description,
-    long_description=open('README.rst').read(),
     classifiers=[
         'Framework :: Django',
         'Framework :: Django :: 1.10',
