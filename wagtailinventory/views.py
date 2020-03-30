@@ -3,13 +3,8 @@ from django.shortcuts import render
 from django.views.generic import View
 
 import wagtail
+from wagtail.core.models import Page
 from wagtailinventory.forms import PageBlockQueryFormSet
-
-
-try:
-    from wagtail.core.models import Page
-except ImportError:  # pragma: no cover; fallback for Wagtail <2.0
-    from wagtail.wagtailcore.models import Page
 
 
 class SearchView(View):

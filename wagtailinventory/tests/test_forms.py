@@ -1,14 +1,9 @@
 from django.db.models.fields import BLANK_CHOICE_DASH
 from django.test import TestCase
 
+from wagtail.core.models import Page, Site
 from wagtailinventory.forms import PageBlockQueryForm
 from wagtailinventory.models import PageBlock
-
-
-try:
-    from wagtail.core.models import Page, Site
-except ImportError:  # pragma: no cover; fallback for Wagtail <2.0
-    from wagtail.wagtailcore.models import Page, Site
 
 
 class TestPageBlockQueryForm(TestCase):

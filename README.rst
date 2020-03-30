@@ -50,7 +50,7 @@ This code has been tested for compatibility with:
 
 * Python 3.6, 3.8
 * Django 1.11, 2.0, 2.2
-* Wagtail 1.13, 2.3, 2.8
+* Wagtail 2.3, 2.8
 
 It should be compatible with all intermediate versions, as well.
 If you find that it is not, please `file an issue <https://github.com/cfpb/wagtail-inventory/issues/new>`_.

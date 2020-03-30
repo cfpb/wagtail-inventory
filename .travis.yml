@@ -4,9 +4,7 @@ cache: pip
 
 matrix:
   include:
-    - env: TOXENV=flake8
-      python: 3.6
-    - env: TOXENV=py36-dj111-wag113
+    - env: TOXENV=lint
       python: 3.6
     - env: TOXENV=py36-dj111-wag23
       python: 3.6

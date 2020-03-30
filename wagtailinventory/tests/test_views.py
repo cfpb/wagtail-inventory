@@ -3,13 +3,8 @@ from django.test import TestCase
 from django.urls import reverse
 from django.utils.six.moves.urllib.parse import urlencode
 
+from wagtail.core.models import Page
 from wagtail.tests.utils import WagtailTestUtils
-
-
-try:
-    from wagtail.core.models import Page
-except ImportError:  # pragma: no cover; fallback for Wagtail <2.0
-    from wagtail.wagtailcore.models import Page
 
 
 class SearchViewTests(WagtailTestUtils, TestCase):

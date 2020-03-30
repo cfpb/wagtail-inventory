@@ -2,12 +2,8 @@
 from django.db import migrations, models
 import django.db.models.deletion
 
-try:
-    from wagtail.core import blocks as core_blocks
-    from wagtail.core import fields as core_fields  # pragma: no cover
-except ImportError:  # pragma: no cover; fallback for Wagtail <2.0
-    from wagtail.wagtailcore import blocks as core_blocks
-    from wagtail.wagtailcore import fields as core_fields
+from wagtail.core import blocks as core_blocks
+from wagtail.core import fields as core_fields  # pragma: no cover
 
 
 class Migration(migrations.Migration):
