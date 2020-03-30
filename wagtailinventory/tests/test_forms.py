@@ -1,5 +1,3 @@
-from __future__ import absolute_import, unicode_literals
-
 from django.db.models.fields import BLANK_CHOICE_DASH
 from django.test import TestCase
 
