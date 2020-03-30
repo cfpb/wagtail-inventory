@@ -13,9 +13,9 @@ except ImportError:  # pragma: no cover; fallback for Wagtail <2.0
 
 
 urlpatterns = [
-    url(r'^admin/', include(wagtailadmin_urls)),
-    url(r'^documents/', include(wagtaildocs_urls)),
-    url(r'', include(wagtailcore_urls)),
+    url(r"^admin/", include(wagtailadmin_urls)),
+    url(r"^documents/", include(wagtaildocs_urls)),
+    url(r"", include(wagtailcore_urls)),
 ]
 
 
@@ -25,6 +25,5 @@ if settings.DEBUG:
 
     urlpatterns += staticfiles_urlpatterns()
     urlpatterns += static(
-        settings.MEDIA_URL,
-        document_root=settings.MEDIA_ROOT
+        settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
     )
