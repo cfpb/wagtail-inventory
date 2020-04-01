@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 
 
 install_requires = [
-    "Django>=1.8,<2.3",
+    "Django>=1.11,<2.3",
     "tqdm==4.15.0",
     "wagtail>=2.3,<2.9",
 ]
@@ -36,10 +36,7 @@ setup(
     extras_require={"testing": testing_extras,},
     classifiers=[
         "Framework :: Django",
-        "Framework :: Django :: 1.10",
         "Framework :: Django :: 1.11",
-        "Framework :: Django :: 1.8",
-        "Framework :: Django :: 1.9",
         "Framework :: Django :: 2.0",
         "Framework :: Django :: 2.1",
         "Framework :: Django :: 2.2",
