@@ -1,14 +1,8 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 from django.db import migrations
 
-try:
-    from wagtail.core import blocks as core_blocks
-    from wagtail.core import fields as core_fields  # pragma: no cover
-except ImportError:  # pragma: no cover; fallback for Wagtail <2.0
-    from wagtail.wagtailcore import blocks as core_blocks
-    from wagtail.wagtailcore import fields as core_fields
+from wagtail.core import blocks as core_blocks
+from wagtail.core import fields as core_fields  # pragma: no cover
 
 
 class Migration(migrations.Migration):

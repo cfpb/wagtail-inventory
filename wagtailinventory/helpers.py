@@ -1,17 +1,12 @@
 from itertools import chain
 
-try:
-    from wagtail.core.blocks import ListBlock, StreamBlock, StructBlock
-    from wagtail.core.fields import StreamField  # pragma: no cover
-except ImportError:  # pragma: no cover; fallback for Wagtail <2.0
-    from wagtail.wagtailcore.blocks import ListBlock, StreamBlock, StructBlock
-    from wagtail.wagtailcore.fields import StreamField
-
+from wagtail.core.blocks import ListBlock, StreamBlock, StructBlock
+from wagtail.core.fields import StreamField
 from wagtailinventory.models import PageBlock
 
 
 def get_block_name(block):
-    return block.__module__ + '.' + block.__class__.__name__
+    return block.__module__ + "." + block.__class__.__name__
 
 
 def get_page_blocks(page):
@@ -28,13 +23,13 @@ def get_page_blocks(page):
 
 
 def get_field_blocks(value):
-    block = getattr(value, 'block', None)
+    block = getattr(value, "block", None)
     blocks = [block] if block else []
 
     if isinstance(value, list):
         child_blocks = value
     if isinstance(block, StructBlock):
-        if hasattr(value, 'bound_blocks'):
+        if hasattr(value, "bound_blocks"):
             child_blocks = value.bound_blocks.values()
         else:
             child_blocks = [value.value]

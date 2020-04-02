@@ -1,21 +1,20 @@
 from django.conf import settings
-from django.conf.urls import include, url
+
+from wagtail.admin import urls as wagtailadmin_urls
+from wagtail.core import urls as wagtailcore_urls
+from wagtail.documents import urls as wagtaildocs_urls
 
 
 try:
-    from wagtail.admin import urls as wagtailadmin_urls
-    from wagtail.core import urls as wagtailcore_urls  # pragma: no cover
-    from wagtail.documents import urls as wagtaildocs_urls  # pragma: no cover
-except ImportError:  # pragma: no cover; fallback for Wagtail <2.0
-    from wagtail.wagtailadmin import urls as wagtailadmin_urls
-    from wagtail.wagtailcore import urls as wagtailcore_urls
-    from wagtail.wagtaildocs import urls as wagtaildocs_urls
+    from django.urls import include, re_path
+except ImportError:
+    from django.conf.urls import include, url as re_path
 
 
 urlpatterns = [
-    url(r'^admin/', include(wagtailadmin_urls)),
-    url(r'^documents/', include(wagtaildocs_urls)),
-    url(r'', include(wagtailcore_urls)),
+    re_path(r"^admin/", include(wagtailadmin_urls)),
+    re_path(r"^documents/", include(wagtaildocs_urls)),
+    re_path(r"", include(wagtailcore_urls)),
 ]
 
 
@@ -25,6 +24,5 @@ if settings.DEBUG:
 
     urlpatterns += staticfiles_urlpatterns()
     urlpatterns += static(
-        settings.MEDIA_URL,
-        document_root=settings.MEDIA_ROOT
+        settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
     )
