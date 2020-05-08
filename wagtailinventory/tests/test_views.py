@@ -1,8 +1,9 @@
+from urllib.parse import urlencode
+
 from django.core.management import call_command
 from django.test import TestCase
 from django.urls import reverse
 
-from six.moves.urllib.parse import urlencode
 from wagtail.core.models import Page
 from wagtail.tests.utils import WagtailTestUtils
 
