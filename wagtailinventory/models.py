@@ -1,10 +1,8 @@
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 
 from wagtail.core.models import Page
 
 
-@python_2_unicode_compatible
 class PageBlock(models.Model):
     page = models.ForeignKey(
         Page, related_name="page_blocks", on_delete=models.CASCADE
