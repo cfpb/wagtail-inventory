@@ -4,6 +4,7 @@ from django.views.generic import View
 
 import wagtail
 from wagtail.core.models import Page
+
 from wagtailinventory.forms import PageBlockQueryFormSet
 
 
