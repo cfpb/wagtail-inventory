@@ -3,7 +3,7 @@ from setuptools import find_packages, setup
 
 install_requires = [
     "tqdm==4.15.0",
-    "wagtail>=2.3,<2.10",
+    "wagtail~=2.0",
 ]
 
 
@@ -26,10 +26,11 @@ setup(
     description="Lookup Wagtail pages by block content",
     long_description=open("README.rst").read(),
     license="CCO",
-    version="1.1",
+    version="1.1.1",
     version_format="{tag}.dev{commitcount}+{gitsha}",
     include_package_data=True,
     packages=find_packages(),
+    python_requires=">=3",
     install_requires=install_requires,
     setup_requires=setup_requires,
     extras_require={"testing": testing_extras,},
