@@ -2,6 +2,7 @@ from django.core.management import BaseCommand
 
 from tqdm import tqdm
 from wagtail.core.models import Page
+
 from wagtailinventory.helpers import (
     create_page_inventory,
     delete_page_inventory,
