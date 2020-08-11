@@ -26,7 +26,7 @@ setup(
     description="Lookup Wagtail pages by block content",
     long_description=open("README.rst").read(),
     license="CCO",
-    version="1.1",
+    version="1.1.1",
     version_format="{tag}.dev{commitcount}+{gitsha}",
     include_package_data=True,
     packages=find_packages(),
