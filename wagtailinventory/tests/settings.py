@@ -1,7 +1,5 @@
 import os
 
-import django
-
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
@@ -30,32 +28,19 @@ WAGTAIL_APPS = (
     "wagtail.users",
 )
 
-WAGTAIL_MIDDLEWARE = ("wagtail.core.middleware.SiteMiddleware",)
-
 WAGTAILADMIN_RICH_TEXT_EDITORS = {
     "default": {"WIDGET": "wagtail.admin.rich_text.DraftailRichTextArea"},
     "custom": {"WIDGET": "wagtail.tests.testapp.rich_text.CustomRichTextArea"},
 }
 
-if django.VERSION >= (1, 10):
-    MIDDLEWARE = (
-        "django.middleware.common.CommonMiddleware",
-        "django.contrib.sessions.middleware.SessionMiddleware",
-        "django.middleware.csrf.CsrfViewMiddleware",
-        "django.contrib.auth.middleware.AuthenticationMiddleware",
-        "django.contrib.messages.middleware.MessageMiddleware",
-        "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    ) + WAGTAIL_MIDDLEWARE
-else:
-    MIDDLEWARE_CLASSES = (
-        "django.middleware.common.CommonMiddleware",
-        "django.contrib.sessions.middleware.SessionMiddleware",
-        "django.middleware.csrf.CsrfViewMiddleware",
-        "django.contrib.auth.middleware.AuthenticationMiddleware",
-        "django.contrib.auth.middleware.SessionAuthenticationMiddleware",
-        "django.contrib.messages.middleware.MessageMiddleware",
-        "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    ) + WAGTAIL_MIDDLEWARE
+MIDDLEWARE = (
+    "django.middleware.common.CommonMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
+)
 
 INSTALLED_APPS = (
     (
