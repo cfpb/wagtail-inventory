@@ -66,6 +66,6 @@ Run unit tests with ``tox`` to test against select supported package combination
 Open source licensing info
 --------------------------
 
-#. `TERMS <https://github.com/cfpb/wagtail-inventory/blob/master/TERMS.md>`_
-#. `LICENSE <https://github.com/cfpb/wagtail-inventory/blob/master/LICENSE>`_
+#. `TERMS <https://github.com/cfpb/wagtail-inventory/blob/main/TERMS.md>`_
+#. `LICENSE <https://github.com/cfpb/wagtail-inventory/blob/main/LICENSE>`_
 #. `CFPB Source Code Policy <https://github.com/cfpb/source-code-policy>`_
