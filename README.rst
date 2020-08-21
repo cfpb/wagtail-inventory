@@ -1,6 +1,9 @@
-.. image:: https://travis-ci.org/cfpb/wagtail-inventory.svg?branch=master
+.. image:: https://travis-ci.org/cfpb/wagtail-inventory.svg?branch=main
   :alt: Build Status
   :target: https://travis-ci.org/cfpb/wagtail-inventory
+.. image:: https://coveralls.io/repos/github/cfpb/wagtail-sharing/badge.svg?branch=main
+  :alt: Coverage Status
+  :target: https://coveralls.io/github/cfpb/wagtail-sharing?branch=main
 
 wagtail-inventory
 =================
@@ -48,9 +51,9 @@ Compatibility
 
 This code has been tested for compatibility with:
 
-* Python 3.6, 3.8
-* Django 1.11, 2.2
-* Wagtail 2.3, 2.9, 2.10
+* Python 3.6+
+* Django 2.2 (LTS), 3.1 (current)
+* Wagtail 2.7 (LTS), 2.10 (current)
 
 It should be compatible with all intermediate versions, as well.
 If you find that it is not, please `file an issue <https://github.com/cfpb/wagtail-inventory/issues/new>`_.
@@ -63,6 +66,6 @@ Run unit tests with ``tox`` to test against select supported package combination
 Open source licensing info
 --------------------------
 
-#. `TERMS <https://github.com/cfpb/wagtail-inventory/blob/master/TERMS.md>`_
-#. `LICENSE <https://github.com/cfpb/wagtail-inventory/blob/master/LICENSE>`_
+#. `TERMS <https://github.com/cfpb/wagtail-inventory/blob/main/TERMS.md>`_
+#. `LICENSE <https://github.com/cfpb/wagtail-inventory/blob/main/LICENSE>`_
 #. `CFPB Source Code Policy <https://github.com/cfpb/source-code-policy>`_
