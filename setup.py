@@ -14,7 +14,6 @@ setup_requires = [
 
 testing_extras = [
     "coverage>=3.7.0",
-    "flake8>=2.2.0",
     "mock>=1.0.0",
 ]
 
