@@ -53,7 +53,10 @@ INSTALLED_APPS = (
         "taggit",
     )
     + WAGTAIL_APPS
-    + ("wagtailinventory", "wagtailinventory.tests.testapp",)
+    + (
+        "wagtailinventory",
+        "wagtailinventory.tests.testapp",
+    )
 )
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
