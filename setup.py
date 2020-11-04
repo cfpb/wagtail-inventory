@@ -3,7 +3,7 @@ from setuptools import find_packages, setup
 
 install_requires = [
     "tqdm==4.15.0",
-    "wagtail>=2.7,<2.11",
+    "wagtail>=2.7",
 ]
 
 
@@ -14,7 +14,6 @@ setup_requires = [
 
 testing_extras = [
     "coverage>=3.7.0",
-    "mock>=1.0.0",
 ]
 
 setup(
