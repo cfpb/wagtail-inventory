@@ -3,7 +3,7 @@ from setuptools import find_packages, setup
 
 install_requires = [
     "tqdm==4.15.0",
-    "wagtail>=2.7",
+    "wagtail>=2.7,<2.12",
 ]
 
 
