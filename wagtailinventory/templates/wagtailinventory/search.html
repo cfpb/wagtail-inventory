@@ -12,10 +12,16 @@
 <form class="nice-padding" action="{% url 'wagtailinventory:search' %}">
 	{{ formset.management_form }}
   {% for form in formset %}
-    <div>
-      {{ form.has }}
-      {{ form.block }}
-    </div>
+      <div class="choice_field" style="margin-bottom: 5px">
+          <div class="input" style="width: 175px; display: inline-block">
+              {{ form.has }}
+              <span></span>
+          </div>
+          <div class="input" style="width: 50%; display: inline-block">
+              {{ form.block }}
+              <span></span>
+          </div>
+      </div>
   {% endfor %}
   <input type="submit" value="Find matching pages" style="width: 240px; padding: 10px; margin: 10px 0" />
 </form>
