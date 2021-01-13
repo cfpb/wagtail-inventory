@@ -5,6 +5,26 @@
 
 {% block titletag %}{% trans "Block Inventory" %}{% endblock %}
 
+{% block extra_css %}
+<style>
+.wagtail-inventory-select .select {
+    display: inline-block;
+}
+
+.wagtail-inventory-select .field-content {
+    width: 100%;
+}
+
+.wagtail-inventory-select .select-has {
+    width: 175px;
+}
+
+.wagtail-inventory-select .select-block {
+    width: 50%;
+}
+</style>
+{% endblock %}
+
 {% block content %}
 {% trans "Block Inventory" as header_str %}
 {% include "wagtailadmin/shared/header.html" with title=header_str icon="placeholder" %}
@@ -12,9 +32,9 @@
 <form class="nice-padding" action="{% url 'wagtailinventory:search' %}">
 	{{ formset.management_form }}
   {% for form in formset %}
-    <div>
-      {{ form.has }}
-      {{ form.block }}
+    <div class="wagtail-inventory-select">
+      {% include "wagtailadmin/shared/field.html" with field=form.has show_label=False field_classes="select-has" %}
+      {% include "wagtailadmin/shared/field.html" with field=form.block show_label=False field_classes="select-block" %}
     </div>
   {% endfor %}
   <input type="submit" value="Find matching pages" style="width: 240px; padding: 10px; margin: 10px 0" />
