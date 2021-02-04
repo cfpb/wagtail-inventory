@@ -54,12 +54,31 @@ def get_page_inventory(page=None):
 
 
 def create_page_inventory(page):
+    """
+    Customized as per https://github.com/mozilla/foundation.mozilla.org/issues/6162
+    """
     page_blocks = get_page_blocks(page)
 
-    return [
-        PageBlock.objects.get_or_create(page=page, block=block)[0]
-        for block in page_blocks
-    ]
+    # return [
+    #     PageBlock.objects.get_or_create(page=page, block=block)[0]
+    #     for block in page_blocks
+    # ]
+
+    list = []
+
+    for block in page_blocks:
+        bindings = PageBlock.objects.filter(page=page, block=block)
+
+        if bindings.count() > 0:
+            list.append(bindings.first())
+            for index, entry in enumerate(bindings):
+                if index > 0:
+                    entry.delete()
+        else:
+            result = PageBlock.objects.create(page=page, block=block)
+            list.append(result)
+
+    return list
 
 
 def delete_page_inventory(page=None):
