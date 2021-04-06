@@ -55,14 +55,13 @@ def get_page_inventory(page=None):
 
 def create_page_inventory(page):
     """
-    Customized as per https://github.com/mozilla/foundation.mozilla.org/issues/6162
+    Rather than working with get_or_create, this code
+    works by filtering for the target page, and
+    deduplicating if it finds more than one record
+    for any page/block combination (e.g. due to
+    database corruption, concurrents writes, etc).
     """
     page_blocks = get_page_blocks(page)
-
-    # return [
-    #     PageBlock.objects.get_or_create(page=page, block=block)[0]
-    #     for block in page_blocks
-    # ]
 
     list = []
 
