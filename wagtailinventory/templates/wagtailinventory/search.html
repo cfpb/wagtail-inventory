@@ -7,21 +7,24 @@
 
 {% block extra_css %}
 <style>
-.wagtail-inventory-select .select {
-    display: inline-block;
-}
-
-.wagtail-inventory-select .field-content {
-    width: 100%;
-}
-
-.wagtail-inventory-select .select-has {
-    width: 175px;
-}
-
-.wagtail-inventory-select .select-block {
-    width: 50%;
-}
+    form.nice-padding {
+        display: table;
+        box-sizing: border-box;
+        width: 100%;
+    }
+    .wagtail-inventory-select {
+        display: table-row;
+    }
+    .wagtail-inventory-select .select {
+        display: table-cell;
+        padding: 0 10px 10px 0;
+    }
+    .wagtail-inventory-select .select-has {
+        width: 175px;
+    }
+    .wagtail-inventory-select .field-content {
+        width: 100%;
+    }
 </style>
 {% endblock %}
 
