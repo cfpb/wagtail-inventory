@@ -15,13 +15,11 @@ class PageBlockQueryForm(forms.Form):
         choices=(),
         required=False,
         label="Block type",
-        widget=forms.Select(attrs={"style": "width: 50%"}),
     )
 
     has = forms.ChoiceField(
         choices=((c, c) for c in (INCLUDES_BLOCK, EXCLUDES_BLOCK)),
         label=None,
-        widget=forms.Select(attrs={"style": "width: 100px"}),
     )
 
     def __init__(self, *args, **kwargs):
