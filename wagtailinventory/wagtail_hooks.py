@@ -14,10 +14,10 @@ except ImportError:  # pragma: no cover; fallback for Django <1.10
     from django.core.urlresolvers import reverse
 
 try:
-    from wagtail.admin.menu import MenuItem
+    from wagtail.admin.menu import MenuItem, AdminOnlyMenuItem
     from wagtail.core import hooks  # pragma: no cover
 except ImportError:  # pragma: no cover; fallback for Wagtail <2.0
-    from wagtail.wagtailadmin.menu import MenuItem
+    from wagtail.wagtailadmin.menu import MenuItem, AdminOnlyMenuItem
     from wagtail.wagtailcore import hooks
 
 
@@ -45,7 +45,7 @@ def register_inventory_urls():
 
 @hooks.register("register_settings_menu_item")
 def register_inventory_menu_item():
-    return MenuItem(
+    return AdminOnlyMenuItem(
         "Block Inventory",
         reverse("wagtailinventory:search"),
         classnames="icon icon-placeholder",
