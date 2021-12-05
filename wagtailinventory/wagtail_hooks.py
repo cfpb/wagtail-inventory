@@ -34,7 +34,8 @@ class PermissionCheckingMenuItem(MenuItem):
         super(PermissionCheckingMenuItem, self).__init__(*args, **kwargs)
 
     def is_shown(self, request):
-        return request.user.has_perm(self.permission)
+        if request.user.is_superuser or request.user.has_perm(self.permission):
+            return True
 
 
 @hooks.register("after_create_page")
@@ -57,6 +58,16 @@ def register_inventory_urls():
     return [
         url(r"^inventory/", include(urls, namespace="wagtailinventory")),
     ]
+
+
+
+
+@hooks.register('register_permissions')
+def register_permissions():
+    return Permission.objects.filter(
+        content_type__app_label='wagtailinventory',
+        codename__in=['index_wagtailinventory',]
+    )
 
 
 @hooks.register("register_settings_menu_item")
