@@ -1,4 +1,5 @@
 from django.conf.urls import include, url
+from django.contrib.auth.models import Permission
 
 from wagtailinventory import urls
 from wagtailinventory.helpers import (
@@ -77,4 +78,5 @@ def register_inventory_menu_item():
         reverse("wagtailinventory:search"),
         classnames="icon icon-placeholder",
         order=11000,
+        permission='wagtailinventory.index_wagtailinventory'
     )
