@@ -14,11 +14,27 @@ except ImportError:  # pragma: no cover; fallback for Django <1.10
     from django.core.urlresolvers import reverse
 
 try:
-    from wagtail.admin.menu import MenuItem, AdminOnlyMenuItem
+    from wagtail.admin.menu import MenuItem
     from wagtail.core import hooks  # pragma: no cover
 except ImportError:  # pragma: no cover; fallback for Wagtail <2.0
-    from wagtail.wagtailadmin.menu import MenuItem, AdminOnlyMenuItem
+    from wagtail.wagtailadmin.menu import MenuItem
     from wagtail.wagtailcore import hooks
+
+    
+
+class PermissionCheckingMenuItem(MenuItem):
+    """
+    MenuItem that only displays if the user has a certain permission.
+    This subclassing approach is recommended by the Wagtail documentation:
+    https://docs.wagtail.io/en/stable/reference/hooks.html#register-admin-menu-item
+    """
+
+    def __init__(self, *args, **kwargs):
+        self.permission = kwargs.pop('permission')
+        super(PermissionCheckingMenuItem, self).__init__(*args, **kwargs)
+
+    def is_shown(self, request):
+        return request.user.has_perm(self.permission)
 
 
 @hooks.register("after_create_page")
@@ -45,7 +61,7 @@ def register_inventory_urls():
 
 @hooks.register("register_settings_menu_item")
 def register_inventory_menu_item():
-    return AdminOnlyMenuItem(
+    return PermissionCheckingMenuItem(
         "Block Inventory",
         reverse("wagtailinventory:search"),
         classnames="icon icon-placeholder",
