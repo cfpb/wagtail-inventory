@@ -15,6 +15,7 @@ class PageBlock(models.Model):
                 fields=["page", "block"], name="unique_page_block"
             ),
         ]
+        permissions = [('can_search_inventory', 'Can Search in Wagtail Inventory')]
 
     def __str__(self):
         return "<{}, {}>".format(self.page, self.block)
