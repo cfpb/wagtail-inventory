@@ -62,7 +62,7 @@
         {% endblocktrans %}
       </h2>
 
-      {% include "wagtailinventory/_list_explore_inventory.html" with show_parent=1 show_bulk_actions=1 %}
+      {% include "wagtailinventory/_list_explore_inventory.html" with show_parent=1 show_bulk_actions=1 allow_navigation=0 %}
       {% include "wagtailadmin/shared/pagination_nav.html" with items=pages %}
       {% trans "Select all pages in listing" as select_all_text %}
       {% include 'wagtailadmin/bulk_actions/footer.html' with select_all_obj_text=select_all_text app_label='wagtailcore' model_name='page' objects=pages %}
