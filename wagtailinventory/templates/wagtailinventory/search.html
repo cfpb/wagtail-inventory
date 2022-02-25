@@ -28,6 +28,14 @@
 </style>
 {% endblock %}
 
+{% block extra_js %}
+   {{ block.super }}
+   <script>
+       window.wagtailConfig.BULK_ACTION_ITEM_TYPE = 'PAGE';
+   </script>
+   <script defer src="{% versioned_static 'wagtailadmin/js/bulk-actions.js' %}"></script>
+{% endblock %}
+
 {% block content %}
 {% trans "Block Inventory" as header_str %}
 {% include "wagtailadmin/shared/header.html" with title=header_str icon="placeholder" %}
@@ -54,8 +62,10 @@
         {% endblocktrans %}
       </h2>
 
-      {% include "wagtailadmin/pages/listing/_list_explore.html" with show_parent=1 allow_navigation=0 %}
+      {% include "wagtailinventory/_list_explore_inventory.html" with show_parent=1 show_bulk_actions=1 %}
       {% include "wagtailadmin/shared/pagination_nav.html" with items=pages %}
+      {% trans "Select all pages in listing" as select_all_text %}
+      {% include 'wagtailadmin/bulk_actions/footer.html' with select_all_obj_text=select_all_text app_label='wagtailcore' model_name='page' objects=pages %}
     </div>
   {% else %}
     <div class="nice-padding">
