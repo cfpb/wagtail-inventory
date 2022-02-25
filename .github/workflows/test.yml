@@ -32,9 +32,9 @@ jobs:
     strategy:
       matrix:
         toxenv:
-            - py36-dj22-wag27
-            - py36-dj22-waglatest
-            - py39-dj22-waglatest
+            - py36-dj32-wag215
+            - py36-dj32-waglatest
+            - py39-dj32-wag215
             - py39-dj32-waglatest
         include:
           - toxenv: py36-dj32-wag215
