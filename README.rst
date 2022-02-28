@@ -20,7 +20,7 @@ Install the package using pip:
 .. code-block:: bash
 
   $ pip install wagtail-inventory
- 
+
 Add ``wagtailinventory`` as an installed app in your Django settings:
 
 .. code-block:: python
@@ -52,8 +52,8 @@ Compatibility
 This code has been tested for compatibility with:
 
 * Python 3.6+
-* Django 2.2 (LTS), 3.1 (current)
-* Wagtail 2.7 (LTS), 2.10 (current)
+* Django 3.2 (LTS)
+* Wagtail 2.15 (LTS), 2.16 (current)
 
 It should be compatible with all intermediate versions, as well.
 If you find that it is not, please `file an issue <https://github.com/cfpb/wagtail-inventory/issues/new>`_.
