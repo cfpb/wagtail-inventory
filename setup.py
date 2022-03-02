@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 
 
 install_requires = [
-    "tqdm==4.15.0",
+    "tqdm>=4.15.0,<5",
     "wagtail>=2.7,<3",
 ]
 
