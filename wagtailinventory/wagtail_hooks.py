@@ -1,4 +1,7 @@
-from django.conf.urls import include, url
+try:
+    from django.urls import include, re_path
+except ImportError:
+    from django.conf.urls import include, url as re_path
 
 from wagtailinventory import urls
 from wagtailinventory.helpers import (
@@ -39,7 +42,7 @@ def do_after_page_dete(request, page):
 @hooks.register("register_admin_urls")
 def register_inventory_urls():
     return [
-        url(r"^inventory/", include(urls, namespace="wagtailinventory")),
+        re_path(r"^inventory/", include(urls, namespace="wagtailinventory")),
     ]
 
 
