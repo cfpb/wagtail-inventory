@@ -72,3 +72,6 @@ bower_components/
 .grunt/
 src/vendor/
 dist/
+
+# IDEs
+.idea/
