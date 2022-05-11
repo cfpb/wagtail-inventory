@@ -1,7 +1,7 @@
-try:
-    from django.urls import include, re_path
-except ImportError:
-    from django.conf.urls import include, url as re_path
+from django.urls import include, re_path, reverse
+
+from wagtail.admin.menu import MenuItem
+from wagtail.core import hooks
 
 from wagtailinventory import urls
 from wagtailinventory.helpers import (
@@ -9,19 +9,6 @@ from wagtailinventory.helpers import (
     delete_page_inventory,
     update_page_inventory,
 )
-
-
-try:
-    from django.urls import reverse
-except ImportError:  # pragma: no cover; fallback for Django <1.10
-    from django.core.urlresolvers import reverse
-
-try:
-    from wagtail.admin.menu import MenuItem
-    from wagtail.core import hooks  # pragma: no cover
-except ImportError:  # pragma: no cover; fallback for Wagtail <2.0
-    from wagtail.wagtailadmin.menu import MenuItem
-    from wagtail.wagtailcore import hooks
 
 
 @hooks.register("after_create_page")
