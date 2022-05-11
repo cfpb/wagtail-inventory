@@ -1,11 +1,15 @@
 from django.test import TestCase
 
+import wagtail
 from wagtail.core.models import Page
 
 from wagtailinventory.helpers import get_page_blocks
 
 
-CORE_BLOCKS = "wagtail.core.blocks"
+if wagtail.VERSION < (3,):
+    CORE_BLOCKS = "wagtail.core.blocks"
+else:
+    CORE_BLOCKS = "wagtail.blocks"
 
 
 class TestGetPageBlocks(TestCase):
