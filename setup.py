@@ -40,7 +40,6 @@ setup(
         "Framework :: Django :: 4.0",
         "Framework :: Wagtail",
         "Framework :: Wagtail :: 2",
-        "Framework :: Wagtail :: 3",
         "License :: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication",
         "License :: Public Domain",
         "Programming Language :: Python",

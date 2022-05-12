@@ -34,13 +34,13 @@ jobs:
         toxenv:
             - py36-dj32-wag215
             - py39-dj32-wag215
-            - py39-dj40-wag30
+            - py39-dj40-wag216
         include:
           - toxenv: py36-dj32-wag215
             python-version: 3.6
           - toxenv: py39-dj32-wag215
             python-version: 3.9
-          - toxenv: py39-dj40-wag30
+          - toxenv: py39-dj40-wag216
             python-version: 3.9
 
     steps:
