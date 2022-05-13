@@ -36,7 +36,8 @@ setup(
     classifiers=[
         "Framework :: Django",
         "Framework :: Django :: 2.2",
-        "Framework :: Django :: 3.1",
+        "Framework :: Django :: 3.2",
+        "Framework :: Django :: 4.0",
         "Framework :: Wagtail",
         "Framework :: Wagtail :: 2",
         "License :: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication",

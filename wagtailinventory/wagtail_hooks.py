@@ -1,4 +1,7 @@
-from django.conf.urls import include, url
+from django.urls import include, re_path, reverse
+
+from wagtail.admin.menu import MenuItem
+from wagtail.core import hooks
 
 from wagtailinventory import urls
 from wagtailinventory.helpers import (
@@ -6,19 +9,6 @@ from wagtailinventory.helpers import (
     delete_page_inventory,
     update_page_inventory,
 )
-
-
-try:
-    from django.urls import reverse
-except ImportError:  # pragma: no cover; fallback for Django <1.10
-    from django.core.urlresolvers import reverse
-
-try:
-    from wagtail.admin.menu import MenuItem
-    from wagtail.core import hooks  # pragma: no cover
-except ImportError:  # pragma: no cover; fallback for Wagtail <2.0
-    from wagtail.wagtailadmin.menu import MenuItem
-    from wagtail.wagtailcore import hooks
 
 
 @hooks.register("after_create_page")
@@ -39,7 +29,7 @@ def do_after_page_dete(request, page):
 @hooks.register("register_admin_urls")
 def register_inventory_urls():
     return [
-        url(r"^inventory/", include(urls, namespace="wagtailinventory")),
+        re_path(r"^inventory/", include(urls, namespace="wagtailinventory")),
     ]
 
 

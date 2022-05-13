@@ -52,8 +52,8 @@ Compatibility
 This code has been tested for compatibility with:
 
 * Python 3.6+
-* Django 3.2 (LTS)
-* Wagtail 2.15 (LTS), 2.16 (current)
+* Django 3.2 (LTS), Django 4.0 (Current)
+* Wagtail 2.15 (LTS), Wagtail 2.16 (Current)
 
 It should be compatible with all intermediate versions, as well.
 If you find that it is not, please `file an issue <https://github.com/cfpb/wagtail-inventory/issues/new>`_.
