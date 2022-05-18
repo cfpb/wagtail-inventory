@@ -1,9 +1,9 @@
 .. image:: https://github.com/cfpb/wagtail-inventory/workflows/test/badge.svg
   :alt: Build Status
   :target: https://travis-ci.org/cfpb/wagtail-inventory
-.. image:: https://coveralls.io/repos/github/cfpb/wagtail-sharing/badge.svg?branch=main
+.. image:: https://coveralls.io/repos/github/cfpb/wagtail-inventory/badge.svg?branch=main
   :alt: Coverage Status
-  :target: https://coveralls.io/github/cfpb/wagtail-sharing?branch=main
+  :target: https://coveralls.io/github/cfpb/wagtail-inventory?branch=main
 
 wagtail-inventory
 =================
