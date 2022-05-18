@@ -7,11 +7,6 @@ install_requires = [
 ]
 
 
-setup_requires = [
-    "setuptools-git-version==1.0.3",
-]
-
-
 testing_extras = [
     "coverage>=3.7.0",
     "mock>=1.0.0",
@@ -25,13 +20,11 @@ setup(
     description="Lookup Wagtail pages by block content",
     long_description=open("README.rst", "r", encoding="utf-8").read(),
     license="CCO",
-    version="1.4.1",
-    version_format="{tag}.dev{commitcount}+{gitsha}",
+    version="1.5",
     include_package_data=True,
     packages=find_packages(),
     python_requires=">=3.6",
     install_requires=install_requires,
-    setup_requires=setup_requires,
     extras_require={"testing": testing_extras},
     classifiers=[
         "Framework :: Django",
