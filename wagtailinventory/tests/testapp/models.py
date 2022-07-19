@@ -5,7 +5,7 @@ from wagtail import VERSION as WAGTAIL_VERSION
 
 if WAGTAIL_VERSION >= (3, 0):
     from wagtail import blocks as wagtail_blocks
-    from wagtail.admin.panels import FieldPanel, StreamFieldPanel
+    from wagtail.admin.panels import FieldPanel
     from wagtail.fields import StreamField
     from wagtail.models import Page
 else:
@@ -35,9 +35,14 @@ class SingleStreamFieldPage(Page):
         blank=True,
     )
 
-    content_panels = Page.content_panels + [
-        StreamFieldPanel("content"),
-    ]
+    if WAGTAIL_VERSION >= (3, 0):
+        content_panels = Page.content_panels + [
+            StreamFieldPanel("content"),
+        ]
+    else:
+        content_panels = Page.content_panels + [
+            FieldPanel("content"),
+        ]
 
 
 class MultipleStreamFieldsPage(Page):
@@ -56,10 +61,16 @@ class MultipleStreamFieldsPage(Page):
         ]
     )
 
-    content_panels = Page.content_panels + [
-        StreamFieldPanel("first"),
-        StreamFieldPanel("second"),
-    ]
+    if WAGTAIL_VERSION >= (3, 0):
+        content_panels = Page.content_panels + [
+            StreamFieldPanel("first"),
+            StreamFieldPanel("second"),
+        ]
+    else:
+        content_panels = Page.content_panels + [
+            FieldPanel("first"),
+            FieldPanel("second"),
+        ]
 
 
 class NestedStreamBlockPage(Page):
@@ -77,6 +88,11 @@ class NestedStreamBlockPage(Page):
         ]
     )
 
-    content_panels = Page.content_panels + [
-        StreamFieldPanel("content"),
-    ]
+    if WAGTAIL_VERSION >= (3, 0):
+        content_panels = Page.content_panels + [
+            StreamFieldPanel("content"),
+        ]
+    else:
+        content_panels = Page.content_panels + [
+            FieldPanel("content"),
+        ]
