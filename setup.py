@@ -3,7 +3,8 @@ from setuptools import find_packages, setup
 
 install_requires = [
     "tqdm>=4.15.0,<5",
-    "wagtail>=2.15,<4",
+    "wagtail>=2.15,<4.0",
+    "django>=3.2,<5.0",
 ]
 
 
@@ -28,7 +29,6 @@ setup(
     extras_require={"testing": testing_extras},
     classifiers=[
         "Framework :: Django",
-        "Framework :: Django :: 2.2",
         "Framework :: Django :: 3.2",
         "Framework :: Django :: 4.0",
         "Framework :: Wagtail",
