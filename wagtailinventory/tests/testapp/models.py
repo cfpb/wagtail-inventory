@@ -37,11 +37,11 @@ class SingleStreamFieldPage(Page):
 
     if WAGTAIL_VERSION >= (3, 0):
         content_panels = Page.content_panels + [
-            StreamFieldPanel("content"),
+            FieldPanel("content"),
         ]
     else:
         content_panels = Page.content_panels + [
-            FieldPanel("content"),
+            StreamFieldPanel("content"),
         ]
 
 
@@ -63,13 +63,13 @@ class MultipleStreamFieldsPage(Page):
 
     if WAGTAIL_VERSION >= (3, 0):
         content_panels = Page.content_panels + [
-            StreamFieldPanel("first"),
-            StreamFieldPanel("second"),
+            FieldPanel("first"),
+            FieldPanel("second"),
         ]
     else:
         content_panels = Page.content_panels + [
-            FieldPanel("first"),
-            FieldPanel("second"),
+            StreamFieldPanel("first"),
+            StreamFieldPanel("second"),
         ]
 
 
@@ -90,9 +90,9 @@ class NestedStreamBlockPage(Page):
 
     if WAGTAIL_VERSION >= (3, 0):
         content_panels = Page.content_panels + [
-            StreamFieldPanel("content"),
+            FieldPanel("content"),
         ]
     else:
         content_panels = Page.content_panels + [
-            FieldPanel("content"),
+            StreamFieldPanel("content"),
         ]
