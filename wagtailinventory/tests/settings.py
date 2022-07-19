@@ -1,5 +1,7 @@
 import os
 
+from wagtail import VERSION as WAGTAIL_VERSION
+
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
@@ -21,7 +23,7 @@ WAGTAIL_APPS = (
     "wagtail.contrib.forms",
     "wagtail.contrib.settings",
     "wagtail.admin",
-    "wagtail.core",
+    "wagtail" if WAGTAIL_VERSION >= (3, 0) else "wagtail.core",
     "wagtail.documents",
     "wagtail.images",
     "wagtail.sites",
@@ -30,7 +32,7 @@ WAGTAIL_APPS = (
 
 WAGTAILADMIN_RICH_TEXT_EDITORS = {
     "default": {"WIDGET": "wagtail.admin.rich_text.DraftailRichTextArea"},
-    "custom": {"WIDGET": "wagtail.tests.testapp.rich_text.CustomRichTextArea"},
+    "custom": {"WIDGET": "wagtail.test.testapp.rich_text.CustomRichTextArea"},
 }
 
 MIDDLEWARE = (

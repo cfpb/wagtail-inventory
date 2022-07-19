@@ -1,8 +1,15 @@
 # -*- coding: utf-8 -*-
 from django.db import migrations
 
-from wagtail.core import blocks as core_blocks
-from wagtail.core import fields as core_fields  # pragma: no cover
+from wagtail import VERSION as WAGTAIL_VERSION
+
+
+if WAGTAIL_VERSION >= (3, 0):
+    from wagtail import blocks as core_blocks
+    from wagtail import fields as core_fields  # pragma: no cover
+else:
+    from wagtail.core import blocks as core_blocks
+    from wagtail.core import fields as core_fields  # pragma: no cover
 
 
 class Migration(migrations.Migration):

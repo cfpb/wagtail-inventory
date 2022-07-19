@@ -1,7 +1,14 @@
 from itertools import chain
 
-from wagtail.core.blocks import ListBlock, StreamBlock, StructBlock
-from wagtail.core.fields import StreamField
+from wagtail import VERSION as WAGTAIL_VERSION
+
+
+if WAGTAIL_VERSION >= (3, 0):
+    from wagtail.blocks import ListBlock, StreamBlock, StructBlock
+    from wagtail.fields import StreamField
+else:
+    from wagtail.core.blocks import ListBlock, StreamBlock, StructBlock
+    from wagtail.core.fields import StreamField
 
 from wagtailinventory.models import PageBlock
 

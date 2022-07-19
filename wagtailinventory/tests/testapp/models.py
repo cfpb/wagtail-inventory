@@ -1,9 +1,18 @@
 from django.db import models
 
-from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
-from wagtail.core import blocks as wagtail_blocks
-from wagtail.core.fields import StreamField
-from wagtail.core.models import Page
+from wagtail import VERSION as WAGTAIL_VERSION
+
+
+if WAGTAIL_VERSION >= (3, 0):
+    from wagtail import blocks as wagtail_blocks
+    from wagtail.admin.panels import FieldPanel, StreamFieldPanel
+    from wagtail.fields import StreamField
+    from wagtail.models import Page
+else:
+    from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
+    from wagtail.core import blocks as wagtail_blocks
+    from wagtail.core.fields import StreamField
+    from wagtail.core.models import Page
 
 from wagtailinventory.tests.testapp import blocks
 

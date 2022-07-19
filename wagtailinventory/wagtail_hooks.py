@@ -1,7 +1,13 @@
 from django.urls import include, re_path, reverse
 
+from wagtail import VERSION as WAGTAIL_VERSION
 from wagtail.admin.menu import MenuItem
-from wagtail.core import hooks
+
+
+if WAGTAIL_VERSION >= (3, 0):
+    from wagtail import hooks
+else:
+    from wagtail.core import hooks
 
 from wagtailinventory import urls
 from wagtailinventory.helpers import (

@@ -2,8 +2,13 @@ from django.http import HttpResponseBadRequest
 from django.shortcuts import render
 from django.views.generic import View
 
-import wagtail
-from wagtail.core.models import Page
+from wagtail import VERSION as WAGTAIL_VERSION
+
+
+if WAGTAIL_VERSION >= (3, 0):
+    from wagtail.models import Page
+else:
+    from wagtail.core.models import Page
 
 from wagtailinventory.forms import PageBlockQueryFormSet
 
@@ -25,7 +30,7 @@ class SearchView(View):
         queryset = queryset.order_by("title")
 
         # https://docs.wagtail.io/en/latest/releases/2.5.html#changes-to-admin-pagination-helpers
-        if wagtail.VERSION < (2, 5):
+        if WAGTAIL_VERSION < (2, 5):
             from wagtail.utils.pagination import paginate
 
             paginator, pages = paginate(request, queryset)

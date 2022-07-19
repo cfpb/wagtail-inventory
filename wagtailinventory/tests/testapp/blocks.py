@@ -1,4 +1,10 @@
-from wagtail.core import blocks
+from wagtail import VERSION as WAGTAIL_VERSION
+
+
+if WAGTAIL_VERSION >= (3, 0):
+    from wagtail import blocks
+else:
+    from wagtail.core import blocks
 
 
 class Atom(blocks.StructBlock):
