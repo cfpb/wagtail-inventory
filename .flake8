@@ -9,10 +9,8 @@ ignore =
     # PEP8 weakly recommends Knuth-style line breaks before binary
     # operators
     W503, W504
-exclude =
+extend-exclude =
     # These are directories that it's a waste of time to traverse
-    .git,
-    .tox,
     .venv,
     docs,
     venv,
@@ -20,4 +18,4 @@ exclude =
     # Generated migration files will throw errors. We need to find a way
     # to exclude django-generated migrations while including
     # manually-written migrations.
-    */migrations/*.py,
+    **/migrations/*.py,
