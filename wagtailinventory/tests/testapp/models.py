@@ -37,14 +37,14 @@ class MultipleStreamFieldsPage(Page):
             ("atom", blocks.Atom()),
             ("molecule", blocks.Molecule()),
             ("organism", blocks.Organism()),
-        ]
+        ],
     )
     second = StreamField(
         [
             ("atom", blocks.Atom()),
             ("molecule", blocks.Molecule()),
             ("organism", blocks.Organism()),
-        ]
+        ],
     )
 
     content_panels = Page.content_panels + [
@@ -65,7 +65,7 @@ class NestedStreamBlockPage(Page):
                     ]
                 ),
             ),
-        ]
+        ],
     )
 
     content_panels = Page.content_panels + [
