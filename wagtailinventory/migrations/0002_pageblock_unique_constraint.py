@@ -2,7 +2,7 @@ from django.db import migrations, models
 from django.db.models import Min, Count
 
 
-def remove_duplicates(apps, schema_editor):
+def remove_duplicates(apps, schema_editor):  # pragma: no cover
     PageBlock = apps.get_model('wagtailinventory', 'PageBlock')
 
     duplicate_pks_to_keep = (

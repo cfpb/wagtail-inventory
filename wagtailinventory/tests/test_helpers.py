@@ -1,8 +1,16 @@
+import json
+
+from django.core.management import call_command
 from django.test import TestCase
 
 from wagtail.core.models import Page
 
-from wagtailinventory.helpers import get_page_blocks
+from wagtailinventory.helpers import (
+    create_page_inventory,
+    get_page_blocks,
+    get_page_inventory,
+    update_page_inventory,
+)
 
 
 CORE_BLOCKS = "wagtail.core.blocks"
@@ -52,3 +60,31 @@ class TestGetPageBlocks(TestCase):
                 "wagtailinventory.tests.testapp.blocks.Atom",
             ],
         )
+
+
+class TestPageInventoryHelpers(TestCase):
+    fixtures = ["test_blocks.json"]
+
+    def setUp(self):
+        call_command("block_inventory", verbosity=0)
+
+    def test_get_all_pageblocks(self):
+        self.assertEqual(get_page_inventory().count(), 10)
+
+    def test_get_pageblocks_filtered_by_page(self):
+        page = Page.objects.get(slug="single-streamfield-page-content")
+        self.assertEqual(get_page_inventory(page).count(), 2)
+
+    def test_update_page(self):
+        # First the page has 2 blocks.
+        page = Page.objects.get(slug="single-streamfield-page-content")
+        self.assertEqual(get_page_inventory(page).count(), 2)
+
+        # Delete the page's blocks.
+        page = page.specific
+        page.content = []
+        page.save_revision().publish()
+
+        # Updating the page should remove the block inventory.
+        update_page_inventory(page)
+        self.assertEqual(get_page_inventory(page).count(), 0)

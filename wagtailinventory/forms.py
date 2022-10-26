@@ -19,7 +19,7 @@ class PageBlockQueryForm(forms.Form):
 
     has = forms.ChoiceField(
         choices=((c, c) for c in (INCLUDES_BLOCK, EXCLUDES_BLOCK)),
-        label=None,
+        label=None
     )
 
     def __init__(self, *args, **kwargs):
