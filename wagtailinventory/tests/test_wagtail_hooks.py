@@ -3,10 +3,17 @@ import json
 from django.test import TestCase
 from django.urls import reverse
 
+import wagtail
 from wagtail.core.models import Page, Site
 from wagtail.tests.utils import WagtailTestUtils
 
 from wagtailinventory.models import PageBlock
+
+
+if wagtail.VERSION < (3, 0):  # pragma: nocover
+    CORE_BLOCKS = "wagtail.core.blocks"
+else:
+    CORE_BLOCKS = "wagtail.blocks"
 
 
 class TestWagtailHooks(TestCase, WagtailTestUtils):
@@ -56,8 +63,8 @@ class TestWagtailHooks(TestCase, WagtailTestUtils):
                 )
             ),
             [
-                "wagtail.core.blocks.field_block.CharBlock",
-                "wagtail.core.blocks.list_block.ListBlock",
+                CORE_BLOCKS + ".field_block.CharBlock",
+                CORE_BLOCKS + ".list_block.ListBlock",
                 "wagtailinventory.tests.testapp.blocks.Atom",
                 "wagtailinventory.tests.testapp.blocks.Molecule",
             ],
@@ -92,7 +99,7 @@ class TestWagtailHooks(TestCase, WagtailTestUtils):
                 )
             ),
             [
-                "wagtail.core.blocks.field_block.CharBlock",
+                CORE_BLOCKS + ".field_block.CharBlock",
                 "wagtailinventory.tests.testapp.blocks.Atom",
             ],
         )

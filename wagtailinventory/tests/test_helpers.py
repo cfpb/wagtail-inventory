@@ -3,17 +3,20 @@ import json
 from django.core.management import call_command
 from django.test import TestCase
 
+import wagtail
 from wagtail.core.models import Page
 
 from wagtailinventory.helpers import (
-    create_page_inventory,
     get_page_blocks,
     get_page_inventory,
     update_page_inventory,
 )
 
 
-CORE_BLOCKS = "wagtail.core.blocks"
+if wagtail.VERSION < (3, 0):  # pragma: nocover
+    CORE_BLOCKS = "wagtail.core.blocks"
+else:
+    CORE_BLOCKS = "wagtail.blocks"
 
 
 class TestGetPageBlocks(TestCase):
