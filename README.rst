@@ -61,7 +61,19 @@ If you find that it is not, please `file an issue <https://github.com/cfpb/wagta
 Testing
 -------
 
-Run unit tests with ``tox`` to test against select supported package combinations.
+Running project unit tests requires `tox <https://tox.wiki/en/latest/>`_:
+
+.. code-block:: bash
+
+  $ tox
+
+To run the test app interactively, run:
+
+.. code-block:: bash
+
+  $ tox -e interactive
+
+Now you can visit http://localhost:8000/admin/ in a browser and log in with ``admin`` / ``changeme``.
 
 Open source licensing info
 --------------------------
