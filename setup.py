@@ -20,7 +20,7 @@ setup(
     description="Lookup Wagtail pages by block content",
     long_description=open("README.rst", "r", encoding="utf-8").read(),
     license="CCO",
-    version="1.5",
+    version="1.6",
     include_package_data=True,
     packages=find_packages(),
     python_requires=">=3.8",
