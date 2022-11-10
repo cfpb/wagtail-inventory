@@ -27,8 +27,6 @@ def get_field_blocks(value):
     block = getattr(value, "block", None)
     blocks = [block] if block else []
 
-    if isinstance(value, list):
-        child_blocks = value
     if isinstance(block, StructBlock):
         if hasattr(value, "bound_blocks"):
             child_blocks = value.bound_blocks.values()

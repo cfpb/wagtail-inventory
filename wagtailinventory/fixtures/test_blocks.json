@@ -1,22 +1,5 @@
 [
 {
-    "model": "auth.user",
-    "fields": {
-        "password": "pbkdf2_sha256$100000$RKUa1ZdWARZL$rG55GlxBES3r1bDuInG/z9IthbzqS43lehVwXGx4Ke4=",
-        "last_login": "2018-06-11T11:43:09.976",
-        "is_superuser": true,
-        "username": "admin",
-        "first_name": "",
-        "last_name": "",
-        "email": "admin@admin.admin",
-        "is_staff": true,
-        "is_active": true,
-        "date_joined": "2018-06-11T11:42:56.375",
-        "groups": [],
-        "user_permissions": []
-    }
-},
-{
     "model": "wagtailcore.page",
     "pk": 3,
     "fields": {
@@ -33,9 +16,6 @@
         "live": false,
         "has_unpublished_changes": true,
         "url_path": "/home/single-streamfield-page-no-content/",
-        "owner": [
-            "admin"
-        ],
         "seo_title": "",
         "show_in_menus": false,
         "search_description": "",
@@ -66,9 +46,6 @@
         "live": false,
         "has_unpublished_changes": true,
         "url_path": "/home/single-streamfield-page-content/",
-        "owner": [
-            "admin"
-        ],
         "seo_title": "",
         "show_in_menus": false,
         "search_description": "",
@@ -99,9 +76,6 @@
         "live": false,
         "has_unpublished_changes": true,
         "url_path": "/home/multiple-streamfields-page/",
-        "owner": [
-            "admin"
-        ],
         "seo_title": "",
         "show_in_menus": false,
         "search_description": "",
@@ -132,9 +106,6 @@
         "live": false,
         "has_unpublished_changes": true,
         "url_path": "/home/nested-streamblock-page/",
-        "owner": [
-            "admin"
-        ],
         "seo_title": "",
         "show_in_menus": false,
         "search_description": "",
@@ -165,9 +136,6 @@
         "live": false,
         "has_unpublished_changes": true,
         "url_path": "/home/no-streamfields-page/",
-        "owner": [
-            "admin"
-        ],
         "seo_title": "",
         "show_in_menus": false,
         "search_description": "",

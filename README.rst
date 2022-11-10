@@ -52,8 +52,8 @@ Compatibility
 This code has been tested for compatibility with:
 
 * Python 3.6+
-* Django 3.2 (LTS), Django 4.0 (Current)
-* Wagtail 2.15 (LTS), Wagtail 2.16 (Current)
+* Django 3.2 (LTS), 4.0, 4.1
+* Wagtail 2.15 (LTS), 3.0, 4.0
 
 It should be compatible with all intermediate versions, as well.
 If you find that it is not, please `file an issue <https://github.com/cfpb/wagtail-inventory/issues/new>`_.
@@ -61,7 +61,19 @@ If you find that it is not, please `file an issue <https://github.com/cfpb/wagta
 Testing
 -------
 
-Run unit tests with ``tox`` to test against select supported package combinations.
+Running project unit tests requires `tox <https://tox.wiki/en/latest/>`_:
+
+.. code-block:: bash
+
+  $ tox
+
+To run the test app interactively, run:
+
+.. code-block:: bash
+
+  $ tox -e interactive
+
+Now you can visit http://localhost:8000/admin/ in a browser and log in with ``admin`` / ``changeme``.
 
 Open source licensing info
 --------------------------

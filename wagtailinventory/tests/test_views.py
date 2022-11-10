@@ -48,7 +48,7 @@ class SearchViewTests(WagtailTestUtils, TestCase):
                 "form-TOTAL_FORMS": 1,
                 "form-INITIAL_FORMS": 0,
                 "form-0-has": "includes",
-                "form-0-block": "wagtailinventory.tests.testapp.blocks.Organism",  # noqa
+                "form-0-block": "wagtailinventory.tests.testapp.blocks.Organism",
             }
         )
         self.assertEqual(response.status_code, 200)
