@@ -1,7 +1,7 @@
 from django.db.models.fields import BLANK_CHOICE_DASH
 from django.test import TestCase
 
-from wagtail.core.models import Page, Site
+from wagtail.models import Page, Site
 
 from wagtailinventory.forms import PageBlockQueryForm, PageBlockQueryFormSet
 from wagtailinventory.models import PageBlock

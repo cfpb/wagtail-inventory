@@ -2,14 +2,14 @@ from django.test import TestCase
 from django.urls import reverse
 
 import wagtail
-from wagtail.core.models import Page, Site
-from wagtail.tests.utils import WagtailTestUtils
+from wagtail.models import Page, Site
+from wagtail.test.utils import WagtailTestUtils
 
 from wagtailinventory.models import PageBlock
 
 
 if wagtail.VERSION < (3, 0):  # pragma: nocover
-    CORE_BLOCKS = "wagtail.core.blocks"
+    CORE_BLOCKS = "wagtail.blocks"
 else:
     CORE_BLOCKS = "wagtail.blocks"
 

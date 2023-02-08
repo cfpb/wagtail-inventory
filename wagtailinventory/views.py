@@ -3,7 +3,7 @@ from django.http import HttpResponseBadRequest
 from django.shortcuts import render
 from django.views.generic import View
 
-from wagtail.core.models import Page
+from wagtail.models import Page
 
 from wagtailinventory.forms import PageBlockQueryFormSet
 

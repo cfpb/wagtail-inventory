@@ -2,7 +2,7 @@ from django.core.management import call_command
 from django.test import TestCase
 
 import wagtail
-from wagtail.core.models import Page
+from wagtail.models import Page
 
 from wagtailinventory.helpers import (
     get_page_blocks,
@@ -12,7 +12,7 @@ from wagtailinventory.helpers import (
 
 
 if wagtail.VERSION < (3, 0):  # pragma: nocover
-    CORE_BLOCKS = "wagtail.core.blocks"
+    CORE_BLOCKS = "wagtail.blocks"
 else:
     CORE_BLOCKS = "wagtail.blocks"
 

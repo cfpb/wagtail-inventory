@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from wagtail.core.models import Page
+from wagtail.models import Page
 
 from wagtailinventory.models import PageBlock
 

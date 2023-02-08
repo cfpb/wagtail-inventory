@@ -1,9 +1,9 @@
 from django.db import models
 
-from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
-from wagtail.core import blocks as wagtail_blocks
-from wagtail.core.fields import StreamField
-from wagtail.core.models import Page
+from wagtail import blocks as wagtail_blocks
+from wagtail.admin.panels import FieldPanel
+from wagtail.fields import StreamField
+from wagtail.models import Page
 
 from wagtailinventory.tests.testapp import blocks
 
@@ -24,10 +24,11 @@ class SingleStreamFieldPage(Page):
             ("organism", blocks.Organism()),
         ],
         blank=True,
+        use_json_field=True,
     )
 
     content_panels = Page.content_panels + [
-        StreamFieldPanel("content"),
+        FieldPanel("content"),
     ]
 
 
@@ -38,6 +39,7 @@ class MultipleStreamFieldsPage(Page):
             ("molecule", blocks.Molecule()),
             ("organism", blocks.Organism()),
         ],
+        use_json_field=True,
     )
     second = StreamField(
         [
@@ -45,11 +47,12 @@ class MultipleStreamFieldsPage(Page):
             ("molecule", blocks.Molecule()),
             ("organism", blocks.Organism()),
         ],
+        use_json_field=True,
     )
 
     content_panels = Page.content_panels + [
-        StreamFieldPanel("first"),
-        StreamFieldPanel("second"),
+        FieldPanel("first"),
+        FieldPanel("second"),
     ]
 
 
@@ -66,8 +69,9 @@ class NestedStreamBlockPage(Page):
                 ),
             ),
         ],
+        use_json_field=True,
     )
 
     content_panels = Page.content_panels + [
-        StreamFieldPanel("content"),
+        FieldPanel("content"),
     ]
