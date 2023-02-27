@@ -28,6 +28,7 @@ classifiers = [
 [project.optional-dependencies]
 testing = [
     "coverage[toml]",
+    "django-autocomplete-light>=3.9",
 ]
 
 [project.urls]

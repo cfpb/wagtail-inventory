@@ -1,5 +1,7 @@
 from django.apps import AppConfig
 
+from . import checks  # noqa F401
+
 
 class WagtailInventoryAppConfig(AppConfig):
     name = "wagtailinventory"

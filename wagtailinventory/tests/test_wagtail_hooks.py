@@ -13,7 +13,7 @@ class TestWagtailHooks(TestCase, WagtailTestUtils):
 
         self.login()
 
-    def test_inventory_hooks(self):
+    def test_page_edit_hooks(self):
         self.assertEqual(PageBlock.objects.all().count(), 0)
 
         # Creating a page should create its inventory with 2 blocks.

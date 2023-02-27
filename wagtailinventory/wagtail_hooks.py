@@ -1,14 +1,15 @@
-from django.urls import include, re_path, reverse
+from django.urls import re_path, reverse
 
 from wagtail import hooks
-from wagtail.admin.menu import MenuItem
+from wagtail.admin.menu import AdminOnlyMenuItem
 
-from wagtailinventory import urls
+from wagtailinventory.checks import dal_select2_check_all
 from wagtailinventory.helpers import (
     create_page_inventory,
     delete_page_inventory,
     update_page_inventory,
 )
+from wagtailinventory.views import BlockInventoryReportView
 
 
 @hooks.register("after_create_page")
@@ -26,18 +27,36 @@ def do_after_page_dete(request, page):
     delete_page_inventory(page)
 
 
+@hooks.register("register_reports_menu_item")
+def register_inventory_report_menu_item():
+    return AdminOnlyMenuItem(
+        "Block inventory",
+        reverse("block_inventory_report"),
+        classnames="icon icon-" + BlockInventoryReportView.header_icon,
+    )
+
+
 @hooks.register("register_admin_urls")
-def register_inventory_urls():
-    return [
-        re_path(r"^inventory/", include(urls, namespace="wagtailinventory")),
+def register_inventory_report_url():
+    report_urls = [
+        re_path(
+            r"^reports/block-inventory/$",
+            BlockInventoryReportView.as_view(),
+            name="block_inventory_report",
+        ),
     ]
 
+    # If django-autocomplete-light is present, add our our autocomplete view
+    # to the report URLs.
+    if dal_select2_check_all():
+        from wagtailinventory.views import BlockAutocompleteView
 
-@hooks.register("register_settings_menu_item")
-def register_inventory_menu_item():
-    return MenuItem(
-        "Block Inventory",
-        reverse("wagtailinventory:search"),
-        classnames="icon icon-placeholder",
-        order=11000,
-    )
+        report_urls.append(
+            re_path(
+                r"^reports/block-inventory/block-autocomplete$",
+                BlockAutocompleteView.as_view(),
+                name="block-autocomplete",
+            )
+        )
+
+    return report_urls
