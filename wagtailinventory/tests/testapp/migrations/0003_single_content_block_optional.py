@@ -2,7 +2,7 @@
 from django.db import migrations
 
 from wagtail import blocks as core_blocks
-from wagtail import fields as core_fields  # pragma: no cover
+from wagtail import fields as core_fields
 
 
 class Migration(migrations.Migration):
