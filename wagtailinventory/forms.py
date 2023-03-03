@@ -2,7 +2,7 @@ from django import forms
 from django.db.models.fields import BLANK_CHOICE_DASH
 from django.forms import formset_factory
 
-from wagtail.core.models import Page
+from wagtail.models import Page
 
 from wagtailinventory.models import PageBlock
 

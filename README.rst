@@ -1,9 +1,6 @@
 .. image:: https://github.com/cfpb/wagtail-inventory/workflows/test/badge.svg
   :alt: Build Status
   :target: https://github.com/cfpb/wagtail-inventory/actions/workflows/test.yml
-.. image:: https://coveralls.io/repos/github/cfpb/wagtail-inventory/badge.svg?branch=main
-  :alt: Coverage Status
-  :target: https://coveralls.io/github/cfpb/wagtail-inventory?branch=main
 
 wagtail-inventory
 =================
@@ -52,8 +49,8 @@ Compatibility
 This code has been tested for compatibility with:
 
 * Python 3.8+
-* Django 3.2 (LTS), 4.0, 4.1
-* Wagtail 2.15 (LTS), 3.0, 4.0, 4.1 (LTS)
+* Django 3.2 (LTS), 4.1
+* Wagtail 3.0, 4.1 (LTS), 4.2
 
 It should be compatible with all intermediate versions, as well.
 If you find that it is not, please `file an issue <https://github.com/cfpb/wagtail-inventory/issues/new>`_.

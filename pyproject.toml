@@ -1,6 +1,52 @@
+[project]
+name = "wagtail-inventory"
+version = "1.6.0"
+description = "Lookup Wagtail pages by block content"
+readme = "README.rst"
+requires-python = ">=3.8"
+license = {text = "CC0"}
+authors = [
+    {name = "CFPB", email = "tech@cfpb.gov" }
+]
+dependencies = [
+    "tqdm>=4.15.0,<5",
+    "wagtail>=3",
+]
+classifiers = [
+    "Framework :: Django",
+    "Framework :: Django :: 3.2",
+    "Framework :: Django :: 4",
+    "Framework :: Wagtail",
+    "Framework :: Wagtail :: 3",
+    "Framework :: Wagtail :: 4",
+    "License :: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication",
+    "License :: Public Domain",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+]
+
+[project.optional-dependencies]
+testing = [
+    "coverage[toml]",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/cfpb/wagtail-inventory"
+"Bug Reports" = "https://github.com/cfpb/wagtail-inventory/issues"
+"Source" = "https://github.com/cfpb/wagtail-inventory"
+
+[build-system]
+requires = ["setuptools>=43.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.package-data]
+inventory = [
+    "templates/wagtailinventory/*",
+]
+
 [tool.black]
 line-length = 79
-target-version = ['py36', 'py38']
+target-version = ["py38"]
 include = '\.pyi?$'
 exclude = '''
 (
@@ -13,9 +59,6 @@ exclude = '''
     | build
     | dist
     | migrations
-    | site
-    | \*.json
-    | \*.csv
   )/
 )
 '''
@@ -37,5 +80,25 @@ sections = [
     "LOCALFOLDER"
 ]
 
-[build-system]
-requires = ["setuptools", "wheel"]
+[tool.ruff]
+exclude = [
+    ".git",
+    ".tox",
+    "__pycache__",
+    "*/migrations/*.py",
+    "*/tests/testapp/migrations/*.py",
+    "docs",
+    ".venv",
+    "venv",
+]
+ignore = []
+select = [
+    "E",
+    "F",
+    "W",
+]
+
+[tool.coverage.run]
+omit = [
+    "wagtailinventory/tests/*",
+]

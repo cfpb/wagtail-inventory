@@ -1,6 +1,6 @@
 from django.core.management import BaseCommand
 
-from wagtail.core.models import Page
+from wagtail.models import Page
 
 from tqdm import tqdm
 

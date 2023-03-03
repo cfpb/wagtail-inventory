@@ -1,20 +1,13 @@
 from django.core.management import call_command
 from django.test import TestCase
 
-import wagtail
-from wagtail.core.models import Page
+from wagtail.models import Page
 
 from wagtailinventory.helpers import (
     get_page_blocks,
     get_page_inventory,
     update_page_inventory,
 )
-
-
-if wagtail.VERSION < (3, 0):  # pragma: nocover
-    CORE_BLOCKS = "wagtail.core.blocks"
-else:
-    CORE_BLOCKS = "wagtail.blocks"
 
 
 class TestGetPageBlocks(TestCase):
@@ -33,7 +26,7 @@ class TestGetPageBlocks(TestCase):
         self.assertEqual(
             get_page_blocks(page),
             [
-                CORE_BLOCKS + ".field_block.CharBlock",
+                "wagtail.blocks.field_block.CharBlock",
                 "wagtailinventory.tests.testapp.blocks.Atom",
             ],
         )
@@ -43,8 +36,8 @@ class TestGetPageBlocks(TestCase):
         self.assertEqual(
             get_page_blocks(page),
             [
-                CORE_BLOCKS + ".field_block.CharBlock",
-                CORE_BLOCKS + ".list_block.ListBlock",
+                "wagtail.blocks.field_block.CharBlock",
+                "wagtail.blocks.list_block.ListBlock",
                 "wagtailinventory.tests.testapp.blocks.Atom",
                 "wagtailinventory.tests.testapp.blocks.Molecule",
                 "wagtailinventory.tests.testapp.blocks.Organism",
@@ -56,8 +49,8 @@ class TestGetPageBlocks(TestCase):
         self.assertEqual(
             get_page_blocks(page),
             [
-                CORE_BLOCKS + ".field_block.CharBlock",
-                CORE_BLOCKS + ".stream_block.StreamBlock",
+                "wagtail.blocks.field_block.CharBlock",
+                "wagtail.blocks.stream_block.StreamBlock",
                 "wagtailinventory.tests.testapp.blocks.Atom",
             ],
         )

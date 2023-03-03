@@ -1,7 +1,7 @@
 from django.conf import settings
 
+from wagtail import urls as wagtailcore_urls
 from wagtail.admin import urls as wagtailadmin_urls
-from wagtail.core import urls as wagtailcore_urls
 from wagtail.documents import urls as wagtaildocs_urls
 
 

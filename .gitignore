@@ -50,6 +50,7 @@ __pycache__/
 .env
 .eggs
 .python-version
+build/
 
 # Django #
 #################
