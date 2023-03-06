@@ -66,7 +66,7 @@ def dal_select2_system_check(app_configs, **kwargs):
     if not dal_select2_installed_check():
         errors.append(
             Info(
-                "django-autocomplete-lite's Select2 is not in INSTALLED_APPS",
+                "django-autocomplete-light's Select2 is not in INSTALLED_APPS",
                 hint="Add 'dal_select2' to INSTALLED_APPS",
                 id="wagtailinventory.I003",
             )
