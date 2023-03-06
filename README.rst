@@ -18,13 +18,17 @@ Install the package using pip:
 
   $ pip install wagtail-inventory
 
-Add ``wagtailinventory`` as an installed app in your Django settings:
+This will also install `django-autocomplete-light <https://django-autocomplete-light.readthedocs.io/>`_.
+
+Add ``dal``, ``dal_select2``, and ``wagtailinventory`` as installed apps in your Django settings:
 
 .. code-block:: python
 
   # in settings.py
   INSTALLED_APPS = (
       ...
+      'dal',
+      'dal_select2',
       'wagtailinventory',
       ...
   )

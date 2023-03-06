@@ -3,13 +3,15 @@ from django.urls import include, path, reverse
 from wagtail import hooks
 from wagtail.admin.menu import AdminOnlyMenuItem
 
-from wagtailinventory.checks import dal_select2_check_all
 from wagtailinventory.helpers import (
     create_page_inventory,
     delete_page_inventory,
     update_page_inventory,
 )
-from wagtailinventory.views import BlockInventoryReportView
+from wagtailinventory.views import (
+    BlockAutocompleteView,
+    BlockInventoryReportView,
+)
 
 
 @hooks.register("after_create_page")
@@ -40,24 +42,16 @@ def register_inventory_report_menu_item():
 def register_inventory_report_url():
     report_urls = [
         path(
-            "/",
+            "",
             BlockInventoryReportView.as_view(),
             name="block_inventory_report",
         ),
+        path(
+            "block-autocomplete/",
+            BlockAutocompleteView.as_view(),
+            name="block_autocomplete",
+        ),
     ]
-
-    # If django-autocomplete-light is present, add our our autocomplete view
-    # to the report URLs.
-    if dal_select2_check_all():
-        from wagtailinventory.views import BlockAutocompleteView
-
-        report_urls.append(
-            path(
-                r"block-autocomplete/",
-                BlockAutocompleteView.as_view(),
-                name="block_autocomplete",
-            )
-        )
 
     return [
         path(
