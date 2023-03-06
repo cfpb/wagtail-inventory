@@ -1,7 +1,7 @@
 from unittest import mock
 
 from django.apps import apps
-from django.core.checks import Info, Warning
+from django.core.checks import Warning
 from django.test import TestCase, override_settings
 
 from wagtailinventory.checks import (
@@ -11,16 +11,23 @@ from wagtailinventory.checks import (
 
 
 class WagtailInventoryChecksTestCase(TestCase):
-
     @mock.patch.dict("sys.modules", {"dal": None})
     def test_dal_select2_check_all_fails_on_import(self):
         self.assertFalse(dal_select2_check_all())
 
-    @override_settings(INSTALLED_APPS=["dal_select2", ])
+    @override_settings(
+        INSTALLED_APPS=[
+            "dal_select2",
+        ]
+    )
     def test_dal_select2_check_all_fails_on_dal_installed(self):
         self.assertFalse(dal_select2_check_all())
 
-    @override_settings(INSTALLED_APPS=["dal", ])
+    @override_settings(
+        INSTALLED_APPS=[
+            "dal",
+        ]
+    )
     def test_dal_select2_check_all_fails_on_select2_installed(self):
         self.assertFalse(dal_select2_check_all())
 

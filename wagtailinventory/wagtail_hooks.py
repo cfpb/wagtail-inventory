@@ -1,4 +1,4 @@
-from django.urls import path, reverse, include
+from django.urls import include, path, reverse
 
 from wagtail import hooks
 from wagtail.admin.menu import AdminOnlyMenuItem
