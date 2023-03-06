@@ -76,7 +76,7 @@ def dal_select2_system_check(app_configs, **kwargs):
         errors.append(
             Warning(
                 (
-                    "django-autocomplete-lite is not installed or configured. "
+                    "django-autocomplete-light is not installed or configured. "
                     "Block inventory will fall back on built-in select widgets."
                 ),
                 hint=(
