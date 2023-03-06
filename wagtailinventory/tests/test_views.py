@@ -54,5 +54,5 @@ class BlockInventoryReportViewTestCase(WagtailTestUtils, TestCase):
         # in which case this test will be more useful. For now this test just
         # tests that it does that.
         view_qs = response.context["object_list"]
-        page_qs = Page.objects.all()
+        page_qs = Page.objects.order_by("title")
         self.assertEqual(list(view_qs), list(page_qs))

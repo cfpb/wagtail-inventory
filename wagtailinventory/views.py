@@ -63,5 +63,5 @@ class BlockInventoryReportView(PageReportView):
     filterset_class = BlockInventoryFilterSet
 
     def get_queryset(self):
-        self.queryset = Page.objects.all()
+        self.queryset = Page.objects.order_by("title")
         return super().get_queryset()
