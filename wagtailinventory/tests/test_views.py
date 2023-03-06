@@ -14,7 +14,7 @@ class BlockAutocompleteViewTestCase(WagtailTestUtils, TestCase):
 
     def test_get_list(self):
         call_command("block_inventory", verbosity=0)
-        response = self.client.get(reverse("block-autocomplete"))
+        response = self.client.get(reverse("wagtailinventory:block_autocomplete"))
 
         json_response = response.json()
         self.assertIn("results", json_response)
@@ -42,7 +42,8 @@ class BlockInventoryReportViewTestCase(WagtailTestUtils, TestCase):
         self.login()
 
     def test_view(self):
-        response = self.client.get(reverse("block_inventory_report"))
+        response = self.client.get(
+            reverse("wagtailinventory:block_inventory_report"))
         self.assertIn("object_list", response.context)
 
         # Right now our queryset just returns all pages, to be filtered by the

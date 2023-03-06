@@ -24,7 +24,7 @@ if not dal_select2_check_all():  # pragma: no cover
 else:
     from dal import autocomplete
 
-    block_widget = autocomplete.Select2Multiple(url="block-autocomplete")
+    block_widget = autocomplete.Select2Multiple(url="wagtailinventory:block_autocomplete")
 
     class BlockAutocompleteView(autocomplete.Select2ListView):
         def get_list(self):

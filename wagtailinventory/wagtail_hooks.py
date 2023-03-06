@@ -1,4 +1,4 @@
-from django.urls import re_path, reverse
+from django.urls import path, reverse, include
 
 from wagtail import hooks
 from wagtail.admin.menu import AdminOnlyMenuItem
@@ -31,7 +31,7 @@ def do_after_page_dete(request, page):
 def register_inventory_report_menu_item():
     return AdminOnlyMenuItem(
         "Block inventory",
-        reverse("block_inventory_report"),
+        reverse("wagtailinventory:block_inventory_report"),
         classnames="icon icon-" + BlockInventoryReportView.header_icon,
     )
 
@@ -39,8 +39,8 @@ def register_inventory_report_menu_item():
 @hooks.register("register_admin_urls")
 def register_inventory_report_url():
     report_urls = [
-        re_path(
-            r"^reports/block-inventory/$",
+        path(
+            "/",
             BlockInventoryReportView.as_view(),
             name="block_inventory_report",
         ),
@@ -52,11 +52,19 @@ def register_inventory_report_url():
         from wagtailinventory.views import BlockAutocompleteView
 
         report_urls.append(
-            re_path(
-                r"^reports/block-inventory/block-autocomplete$",
+            path(
+                r"block-autocomplete/",
                 BlockAutocompleteView.as_view(),
-                name="block-autocomplete",
+                name="block_autocomplete",
             )
         )
 
-    return report_urls
+    return [
+        path(
+            "block-inventory/",
+            include(
+                (report_urls, "wagtailinventory"),
+                namespace="wagtailinventory",
+            ),
+        )
+    ]
