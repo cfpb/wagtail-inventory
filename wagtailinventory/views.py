@@ -55,7 +55,7 @@ class BlockInventoryFilterSet(WagtailFilterSet):
 
 
 class BlockInventoryReportView(PageReportView):
-    template_name = "wagtailinventory/inventory_report.html"
+    template_name = "wagtailadmin/reports/base_page_report.html"
     title = "Block inventory"
     header_icon = "placeholder"
     filterset_class = BlockInventoryFilterSet
