@@ -7,7 +7,7 @@ wagtail-inventory
 
 Search Wagtail pages by block type.
 
-Wagtail Inventory adds the ability to search pages in your Wagtail site by the StreamField block types they contain. It adds a new Settings menu to the Wagtail admin site that allows you to search for pages that do or do not contain certain blocks. It supports searching both by Wagtail built-in blocks (like ``CharBlock``) as well as any custom blocks you might define.
+Wagtail Inventory adds the ability to search pages in your Wagtail site by the StreamField block types they contain. It adds a new report to the Wagtail admin site that allows you to search for pages that do or do not contain certain blocks. It supports searching both by Wagtail built-in blocks (like ``CharBlock``) as well as any custom blocks you might define.
 
 Setup
 -----
@@ -18,13 +18,17 @@ Install the package using pip:
 
   $ pip install wagtail-inventory
 
-Add ``wagtailinventory`` as an installed app in your Django settings:
+This will also install `django-autocomplete-light <https://django-autocomplete-light.readthedocs.io/>`_.
+
+Add ``dal``, ``dal_select2``, and ``wagtailinventory`` as installed apps in your Django settings:
 
 .. code-block:: python
 
   # in settings.py
   INSTALLED_APPS = (
       ...
+      'dal',
+      'dal_select2',
       'wagtailinventory',
       ...
   )
@@ -41,7 +45,7 @@ Run a management command to initialize database tables with current pages:
 
   $ manage.py block_inventory
 
-You should now be able to search your pages in the Wagtail admin site, under Settings > Block Inventory.
+You should now be able to search your pages in the Wagtail admin site, under Reports > Block Inventory.
 
 Compatibility
 -------------

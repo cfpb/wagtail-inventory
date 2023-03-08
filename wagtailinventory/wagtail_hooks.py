@@ -1,13 +1,16 @@
-from django.urls import include, re_path, reverse
+from django.urls import include, path, reverse
 
 from wagtail import hooks
-from wagtail.admin.menu import MenuItem
+from wagtail.admin.menu import AdminOnlyMenuItem
 
-from wagtailinventory import urls
 from wagtailinventory.helpers import (
     create_page_inventory,
     delete_page_inventory,
     update_page_inventory,
+)
+from wagtailinventory.views import (
+    BlockAutocompleteView,
+    BlockInventoryReportView,
 )
 
 
@@ -26,18 +29,36 @@ def do_after_page_dete(request, page):
     delete_page_inventory(page)
 
 
+@hooks.register("register_reports_menu_item")
+def register_inventory_report_menu_item():
+    return AdminOnlyMenuItem(
+        "Block inventory",
+        reverse("wagtailinventory:block_inventory_report"),
+        classnames="icon icon-" + BlockInventoryReportView.header_icon,
+    )
+
+
 @hooks.register("register_admin_urls")
-def register_inventory_urls():
-    return [
-        re_path(r"^inventory/", include(urls, namespace="wagtailinventory")),
+def register_inventory_report_url():
+    report_urls = [
+        path(
+            "",
+            BlockInventoryReportView.as_view(),
+            name="block_inventory_report",
+        ),
+        path(
+            "block-autocomplete/",
+            BlockAutocompleteView.as_view(),
+            name="block_autocomplete",
+        ),
     ]
 
-
-@hooks.register("register_settings_menu_item")
-def register_inventory_menu_item():
-    return MenuItem(
-        "Block Inventory",
-        reverse("wagtailinventory:search"),
-        classnames="icon icon-placeholder",
-        order=11000,
-    )
+    return [
+        path(
+            "block-inventory/",
+            include(
+                (report_urls, "wagtailinventory"),
+                namespace="wagtailinventory",
+            ),
+        )
+    ]

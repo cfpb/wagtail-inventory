@@ -11,6 +11,7 @@ authors = [
 dependencies = [
     "tqdm>=4.15.0,<5",
     "wagtail>=3",
+    "django-autocomplete-light>=3.9",
 ]
 classifiers = [
     "Framework :: Django",

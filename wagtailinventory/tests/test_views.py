@@ -1,5 +1,3 @@
-from urllib.parse import urlencode
-
 from django.core.management import call_command
 from django.test import TestCase
 from django.urls import reverse
@@ -8,51 +6,53 @@ from wagtail.models import Page
 from wagtail.test.utils import WagtailTestUtils
 
 
-class SearchViewTests(WagtailTestUtils, TestCase):
+class BlockAutocompleteViewTestCase(WagtailTestUtils, TestCase):
     fixtures = ["test_blocks.json"]
 
     def setUp(self):
         self.login()
 
-    def get(self, params=None):
-        path = reverse("wagtailinventory:search")
-
-        if params:
-            path += "?" + urlencode(params)
-
-        return self.client.get(path)
-
-    def test_empty_query_returns_200_and_all_pages_ordered_by_title(self):
-        response = self.get()
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(
-            response.context["pages"].object_list,
-            list(Page.objects.order_by("title")),
-        )
-
-    def test_get_bad_formset_query_returns_400(self):
-        response = self.get(
-            {
-                "form-TOTAL_FORMS": 1,
-                "form-INITIAL_FORMS": 0,
-                "form-0-has": "invalid",
-            }
-        )
-        self.assertEqual(response.status_code, 400)
-
-    def test_valid_query_returns_200_and_only_appropriate_pages(self):
+    def test_get_list(self):
         call_command("block_inventory", verbosity=0)
+        response = self.client.get(
+            reverse("wagtailinventory:block_autocomplete")
+        )
 
-        response = self.get(
+        json_response = response.json()
+        self.assertIn("results", json_response)
+
+        results = json_response["results"]
+
+        # There are six unique block types in our test fixture
+        self.assertEqual(len(results), 6)
+
+        # Make sure that one of the results matches our expected id/text
+        # pairing
+        self.assertIn(
             {
-                "form-TOTAL_FORMS": 1,
-                "form-INITIAL_FORMS": 0,
-                "form-0-has": "includes",
-                "form-0-block": "wagtailinventory.tests.testapp.blocks.Organism",
-            }
+                "id": "wagtail.blocks.field_block.CharBlock",
+                "text": "wagtail.blocks.field_block.CharBlock",
+            },
+            results,
         )
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(
-            response.context["pages"].object_list,
-            [Page.objects.get(slug="multiple-streamfields-page")],
+
+
+class BlockInventoryReportViewTestCase(WagtailTestUtils, TestCase):
+    fixtures = ["test_blocks.json"]
+
+    def setUp(self):
+        self.login()
+
+    def test_view(self):
+        response = self.client.get(
+            reverse("wagtailinventory:block_inventory_report")
         )
+        self.assertIn("object_list", response.context)
+
+        # Right now our queryset just returns all pages, to be filtered by the
+        # superclass. We might want to put some guardrails around that later,
+        # in which case this test will be more useful. For now this test just
+        # tests that it does that.
+        view_qs = response.context["object_list"]
+        page_qs = Page.objects.order_by("title")
+        self.assertEqual(list(view_qs), list(page_qs))
