@@ -1,5 +1,5 @@
 from django.db import migrations, models
-from django.db.models import Min, Count
+from django.db.models import Count, Min
 
 
 def remove_duplicates(apps, schema_editor):  # pragma: no cover
