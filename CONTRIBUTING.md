@@ -36,7 +36,7 @@ and patterns in the existing code-base.
 
 This project uses [`black`](https://github.com/psf/black) to format code,
 [`isort`](https://github.com/timothycrosley/isort) to format imports,
-and [`flake8`](https://gitlab.com/pycqa/flake8).
+and [`ruff`](https://github.com/charliermarsh/ruff).
 
 You can format code and imports by calling:
 
