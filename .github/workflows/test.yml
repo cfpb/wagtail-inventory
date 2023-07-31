@@ -35,6 +35,20 @@ jobs:
         django: ['3.2', '4.1']
         wagtail: ['4.1', '4.2', '5.0']
         include:
+          - python: '3.8'
+            django: '3.2'
+            wagtail: '3.0'
+          # 3.8 supported django versions + wagtail 5.0
+          - python: '3.8'
+            django: '3.2'
+            wagtail: '5.0'
+          - python: '3.8'
+            django: '4.1'
+            wagtail: '5.0'
+          - python: '3.8'
+            django: '4.2'
+            wagtail: '5.0'
+          # 3.11 supported django versions + wagtail 5.0
           - python: '3.11'
             django: '4.1'
             wagtail: '5.0'

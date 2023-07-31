@@ -16,7 +16,8 @@ dependencies = [
 classifiers = [
     "Framework :: Django",
     "Framework :: Django :: 3.2",
-    "Framework :: Django :: 4",
+    "Framework :: Django :: 4.1",
+    "Framework :: Django :: 4.2",
     "Framework :: Wagtail",
     "Framework :: Wagtail :: 4",
     "Framework :: Wagtail :: 5",
