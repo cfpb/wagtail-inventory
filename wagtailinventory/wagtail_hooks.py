@@ -1,7 +1,8 @@
+from django.contrib.auth.models import Permission
 from django.urls import include, path, reverse
 
 from wagtail import hooks
-from wagtail.admin.menu import AdminOnlyMenuItem
+from wagtail.admin.menu import MenuItem
 
 from wagtailinventory.helpers import (
     create_page_inventory,
@@ -29,9 +30,22 @@ def do_after_page_dete(request, page):
     delete_page_inventory(page)
 
 
+@hooks.register("register_permissions")
+def register_permissions():
+    return Permission.objects.filter(
+        content_type__app_label="wagtailinventory",
+        codename__in=["view_pageblock"],
+    )
+
+
+class CanViewBlockInventoryMenuItem(MenuItem):
+    def is_shown(self, request):
+        return BlockInventoryReportView.check_permissions(request)
+
+
 @hooks.register("register_reports_menu_item")
 def register_inventory_report_menu_item():
-    return AdminOnlyMenuItem(
+    return CanViewBlockInventoryMenuItem(
         "Block inventory",
         reverse("wagtailinventory:block_inventory_report"),
         classnames="icon icon-" + BlockInventoryReportView.header_icon,

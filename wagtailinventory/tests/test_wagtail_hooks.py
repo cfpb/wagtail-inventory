@@ -1,3 +1,6 @@
+from django.contrib.auth import get_user_model
+from django.contrib.auth.models import AnonymousUser, Permission
+from django.http import HttpRequest
 from django.test import TestCase
 from django.urls import reverse
 
@@ -5,6 +8,13 @@ from wagtail.models import Page, Site
 from wagtail.test.utils import WagtailTestUtils
 
 from wagtailinventory.models import PageBlock
+from wagtailinventory.wagtail_hooks import (
+    CanViewBlockInventoryMenuItem,
+    register_permissions,
+)
+
+
+User = get_user_model()
 
 
 class TestWagtailHooks(TestCase, WagtailTestUtils):
@@ -102,3 +112,23 @@ class TestWagtailHooks(TestCase, WagtailTestUtils):
         self.assertEqual(response.status_code, 302)
 
         self.assertEqual(PageBlock.objects.count(), 0)
+
+    def test_menu_item(self):
+        item = CanViewBlockInventoryMenuItem("Test", "/admin/test/")
+
+        admin_request = HttpRequest()
+        admin_request.user = User.objects.filter(is_superuser=True).first()
+        self.assertTrue(item.is_shown(admin_request))
+
+        insufficient_permissions_request = HttpRequest()
+        insufficient_permissions_request.user = AnonymousUser()
+        self.assertFalse(item.is_shown(insufficient_permissions_request))
+
+    def test_register_permissions(self):
+        self.assertQuerysetEqual(
+            register_permissions(),
+            Permission.objects.filter(
+                content_type__app_label="wagtailinventory",
+                codename__in=["view_pageblock"],
+            ),
+        )
