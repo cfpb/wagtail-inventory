@@ -1,3 +1,4 @@
+from wagtail.admin.auth import permission_denied
 from wagtail.admin.filters import WagtailFilterSet
 from wagtail.admin.views.reports import PageReportView
 from wagtail.models import Page
@@ -45,6 +46,17 @@ class BlockInventoryReportView(PageReportView):
     title = "Block inventory"
     header_icon = "placeholder"
     filterset_class = BlockInventoryFilterSet
+
+    @classmethod
+    def check_permissions(cls, request):
+        return request.user.is_superuser or request.user.has_perm(
+            "wagtailinventory.view_pageblock"
+        )
+
+    def dispatch(self, request, *args, **kwargs):
+        if not self.check_permissions(request):
+            return permission_denied(request)
+        return super().dispatch(request, *args, **kwargs)
 
     def get_queryset(self):
         self.queryset = Page.objects.order_by("title")
