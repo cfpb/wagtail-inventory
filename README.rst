@@ -45,7 +45,9 @@ Run a management command to initialize database tables with current pages:
 
   $ manage.py block_inventory
 
-You should now be able to search your pages in the Wagtail admin site, under Reports > Block Inventory.
+Admin users should now be able to search pages in the Wagtail admin site, under Reports > Block Inventory.
+
+Other user groups may be granted access to the report by giving them the "Can view" "Page block" permission in Wagtail Group settings.
 
 Compatibility
 -------------
