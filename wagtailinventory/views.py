@@ -1,6 +1,9 @@
 from wagtail.admin.auth import permission_denied
-from wagtail.admin.filters import WagtailFilterSet
+from wagtail.admin.filters import ContentTypeFilter, WagtailFilterSet
 from wagtail.admin.views.reports import PageReportView
+from wagtail.admin.views.reports.aging_pages import (
+    get_content_types_for_filter,
+)
 from wagtail.models import Page
 
 import django_filters
@@ -36,10 +39,14 @@ class BlockInventoryFilterSet(WagtailFilterSet):
             url="wagtailinventory:block_autocomplete"
         ),
     )
+    content_type = ContentTypeFilter(
+        label="Page Type",
+        queryset=lambda request: get_content_types_for_filter(),
+    )
 
     class Meta:
         model = Page
-        fields = ["include_page_blocks", "exclude_page_blocks"]
+        fields = ["include_page_blocks", "exclude_page_blocks", "content_type"]
 
 
 class BlockInventoryReportView(PageReportView):
