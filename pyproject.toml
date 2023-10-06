@@ -1,6 +1,6 @@
 [project]
 name = "wagtail-inventory"
-version = "2.3"
+version = "2.4"
 description = "Wagtail report to filter pages by block content"
 readme = "README.rst"
 requires-python = ">=3.8"
