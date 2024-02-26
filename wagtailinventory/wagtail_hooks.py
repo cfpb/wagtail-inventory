@@ -1,7 +1,6 @@
 from django.contrib.auth.models import Permission
 from django.urls import include, path, reverse
 
-from wagtail import VERSION as WAGTAIL_VERSION
 from wagtail import hooks
 from wagtail.admin.menu import MenuItem
 
@@ -46,13 +45,10 @@ class CanViewBlockInventoryMenuItem(MenuItem):
 
 @hooks.register("register_reports_menu_item")
 def register_inventory_report_menu_item():
-    key = "classname" if WAGTAIL_VERSION >= (5, 2) else "classnames"
-    icon = "icon icon-" + BlockInventoryReportView.header_icon
-
     return CanViewBlockInventoryMenuItem(
         "Block inventory",
         reverse("wagtailinventory:block_inventory_report"),
-        **{key: icon},
+        icon_name=BlockInventoryReportView.header_icon,
     )
 
 

@@ -1,15 +1,25 @@
+import wagtail
 from wagtail.admin.auth import permission_denied
 from wagtail.admin.filters import ContentTypeFilter, WagtailFilterSet
 from wagtail.admin.views.reports import PageReportView
-from wagtail.admin.views.reports.aging_pages import (
-    get_content_types_for_filter,
-)
 from wagtail.models import Page
 
 import django_filters
 from dal import autocomplete
 
 from wagtailinventory.models import PageBlock
+
+
+if wagtail.VERSION >= (6,):
+    from wagtail.models import get_page_content_types
+else:  # pragma: no cover
+    # For Wagtail < 6, use an older method to get the list of page types.
+    from wagtail.admin.views.reports.aging_pages import (
+        get_content_types_for_filter,
+    )
+
+    def get_page_content_types(include_base_page_type=True):
+        return get_content_types_for_filter()
 
 
 class BlockAutocompleteView(autocomplete.Select2ListView):
@@ -41,7 +51,7 @@ class BlockInventoryFilterSet(WagtailFilterSet):
     )
     content_type = ContentTypeFilter(
         label="Page Type",
-        queryset=lambda request: get_content_types_for_filter(),
+        queryset=lambda request: get_page_content_types(),
     )
 
     class Meta:

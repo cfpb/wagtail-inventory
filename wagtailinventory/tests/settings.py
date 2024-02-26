@@ -90,3 +90,5 @@ WAGTAIL_SITE_NAME = "Test Site"
 ROOT_URLCONF = "wagtailinventory.tests.urls"
 
 WAGTAILADMIN_BASE_URL = "http://localhost:8000"
+
+USE_TZ = True
