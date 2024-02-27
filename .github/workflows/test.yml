@@ -13,7 +13,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.8
+          python-version: 3.11
 
       - name: Install dependencies
         run: |
@@ -33,12 +33,18 @@ jobs:
       matrix:
         python: ['3.8', '3.11']
         django: ['3.2', '4.2']
-        wagtail: ['4.1', '5.2']
+        wagtail: ['4.1', '5.2', '6.0']
         exclude:
+          - django: '3.2'
+            wagtail: '6.0'
           - django: '4.2'
             wagtail: '4.1'
           - python: '3.11'
             django: '3.2'
+        include:
+          - python: '3.11'
+            django: '5.0'
+            wagtail: '6.0'
 
     steps:
       - uses: actions/checkout@v3
@@ -79,7 +85,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.8"
+          python-version: "3.11"
 
       - name: Install dependencies
         run: |
