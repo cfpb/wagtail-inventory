@@ -19,4 +19,4 @@ class PageBlock(models.Model):
     wagtail_reference_index_ignore = True
 
     def __str__(self):
-        return "<{}, {}>".format(self.page, self.block)
+        return f"<{self.page}, {self.block}>"
