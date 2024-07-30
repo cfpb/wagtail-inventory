@@ -54,8 +54,6 @@ INSTALLED_APPS = (
     )
     + WAGTAIL_APPS
     + (
-        "dal",
-        "dal_select2",
         "wagtailinventory",
         "wagtailinventory.tests.testapp",
     )

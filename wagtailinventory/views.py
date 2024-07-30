@@ -1,53 +1,35 @@
-import wagtail
 from wagtail.admin.auth import permission_denied
 from wagtail.admin.filters import ContentTypeFilter, WagtailFilterSet
 from wagtail.admin.views.reports import PageReportView
-from wagtail.models import Page
+from wagtail.models import Page, get_page_content_types
 
 import django_filters
-from dal import autocomplete
 
 from wagtailinventory.models import PageBlock
 
 
-if wagtail.VERSION >= (6,):
-    from wagtail.models import get_page_content_types
-else:  # pragma: no cover
-    # For Wagtail < 6, use an older method to get the list of page types.
-    from wagtail.admin.views.reports.aging_pages import (
-        get_content_types_for_filter,
-    )
-
-    def get_page_content_types(include_base_page_type=True):
-        return get_content_types_for_filter()
-
-
-class BlockAutocompleteView(autocomplete.Select2ListView):
-    def get_list(self):
-        return (
-            PageBlock.objects.distinct()
-            .order_by("block")
-            .values_list("block", flat=True)
-        )
+def get_block_choices():
+    return [
+        (page_block, page_block.rsplit(".", 1)[1])
+        for page_block in PageBlock.objects.distinct()
+        .order_by("block")
+        .values_list("block", flat=True)
+    ]
 
 
 class BlockInventoryFilterSet(WagtailFilterSet):
-    include_page_blocks = django_filters.AllValuesMultipleFilter(
+    include_page_blocks = django_filters.MultipleChoiceFilter(
         field_name="page_blocks__block",
         label="Include Blocks",
         distinct=True,
-        widget=autocomplete.Select2Multiple(
-            url="wagtailinventory:block_autocomplete"
-        ),
+        choices=get_block_choices,
     )
-    exclude_page_blocks = django_filters.AllValuesMultipleFilter(
+    exclude_page_blocks = django_filters.MultipleChoiceFilter(
         field_name="page_blocks__block",
         label="Exclude Blocks",
         distinct=True,
         exclude=True,
-        widget=autocomplete.Select2Multiple(
-            url="wagtailinventory:block_autocomplete"
-        ),
+        choices=get_block_choices,
     )
     content_type = ContentTypeFilter(
         label="Page Type",
@@ -60,9 +42,11 @@ class BlockInventoryFilterSet(WagtailFilterSet):
 
 
 class BlockInventoryReportView(PageReportView):
-    title = "Block inventory"
+    page_title = "Block inventory"
     header_icon = "placeholder"
     filterset_class = BlockInventoryFilterSet
+    index_url_name = "wagtailinventory:block_inventory_report"
+    index_results_url_name = "wagtailinventory:block_inventory_report_results"
 
     @classmethod
     def check_permissions(cls, request):

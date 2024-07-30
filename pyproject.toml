@@ -14,18 +14,13 @@ authors = [
 ]
 dependencies = [
     "tqdm>=4.15.0,<5",
-    "wagtail>=5.2",
-    "django-autocomplete-light>=3.9",
+    "wagtail>=6.2",
 ]
 classifiers = [
     "Framework :: Django",
-    "Framework :: Django :: 3.2",
     "Framework :: Django :: 4.2",
     "Framework :: Django :: 5.0",
     "Framework :: Wagtail",
-    "Framework :: Wagtail :: 3",
-    "Framework :: Wagtail :: 4",
-    "Framework :: Wagtail :: 5",
     "Framework :: Wagtail :: 6",
     "License :: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication",
     "License :: Public Domain",

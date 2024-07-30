@@ -9,10 +9,7 @@ from wagtailinventory.helpers import (
     delete_page_inventory,
     update_page_inventory,
 )
-from wagtailinventory.views import (
-    BlockAutocompleteView,
-    BlockInventoryReportView,
-)
+from wagtailinventory.views import BlockInventoryReportView
 
 
 @hooks.register("after_create_page")
@@ -61,9 +58,9 @@ def register_inventory_report_url():
             name="block_inventory_report",
         ),
         path(
-            "block-autocomplete/",
-            BlockAutocompleteView.as_view(),
-            name="block_autocomplete",
+            "results/",
+            BlockInventoryReportView.as_view(results_only=True),
+            name="block_inventory_report_results",
         ),
     ]
 

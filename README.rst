@@ -18,17 +18,13 @@ Install the package using pip:
 
   $ pip install wagtail-inventory
 
-This will also install `django-autocomplete-light <https://django-autocomplete-light.readthedocs.io/>`_.
-
-Add ``dal``, ``dal_select2``, and ``wagtailinventory`` as installed apps in your Django settings:
+Add `wagtailinventory`` as an installed app in your Django settings:
 
 .. code-block:: python
 
   # in settings.py
   INSTALLED_APPS = (
       ...
-      'dal',
-      'dal_select2',
       'wagtailinventory',
       ...
   )
@@ -54,9 +50,9 @@ Compatibility
 
 This code has been tested for compatibility with:
 
-* Python 3.8+
-* Django 3.2 (LTS), 4.2 (LTS), 5.0
-* Wagtail 3.0+, including 5.2 (LTS) and 6.0
+* Python 3.8, 3.12
+* Django 4.2 (LTS), 5.0
+* Wagtail 6.2
 
 It should be compatible with all intermediate versions, as well.
 If you find that it is not, please `file an issue <https://github.com/cfpb/wagtail-inventory/issues/new>`_.
