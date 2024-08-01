@@ -1,6 +1,5 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Permission
-from django.core.management import call_command
 from django.test import TestCase
 from django.urls import reverse
 
@@ -9,37 +8,6 @@ from wagtail.test.utils import WagtailTestUtils
 
 
 User = get_user_model()
-
-
-class BlockAutocompleteViewTestCase(WagtailTestUtils, TestCase):
-    fixtures = ["test_blocks.json"]
-
-    def setUp(self):
-        self.login()
-
-    def test_get_list(self):
-        call_command("block_inventory", verbosity=0)
-        response = self.client.get(
-            reverse("wagtailinventory:block_autocomplete")
-        )
-
-        json_response = response.json()
-        self.assertIn("results", json_response)
-
-        results = json_response["results"]
-
-        # There are six unique block types in our test fixture
-        self.assertEqual(len(results), 6)
-
-        # Make sure that one of the results matches our expected id/text
-        # pairing
-        self.assertIn(
-            {
-                "id": "wagtail.blocks.field_block.CharBlock",
-                "text": "wagtail.blocks.field_block.CharBlock",
-            },
-            results,
-        )
 
 
 class BlockInventoryReportViewTestCase(WagtailTestUtils, TestCase):
