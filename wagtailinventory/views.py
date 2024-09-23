@@ -1,3 +1,5 @@
+from django.forms.widgets import SelectMultiple
+
 from wagtail.admin.auth import permission_denied
 from wagtail.admin.filters import ContentTypeFilter, WagtailFilterSet
 from wagtail.admin.views.reports import PageReportView
@@ -10,7 +12,7 @@ from wagtailinventory.models import PageBlock
 
 def get_block_choices():
     return [
-        (page_block, page_block.rsplit(".", 1)[1])
+        (page_block, page_block)
         for page_block in PageBlock.objects.distinct()
         .order_by("block")
         .values_list("block", flat=True)
@@ -23,6 +25,7 @@ class BlockInventoryFilterSet(WagtailFilterSet):
         label="Include Blocks",
         distinct=True,
         choices=get_block_choices,
+        widget=SelectMultiple(attrs={"style": "overflow: auto"}),
     )
     exclude_page_blocks = django_filters.MultipleChoiceFilter(
         field_name="page_blocks__block",
@@ -30,6 +33,7 @@ class BlockInventoryFilterSet(WagtailFilterSet):
         distinct=True,
         exclude=True,
         choices=get_block_choices,
+        widget=SelectMultiple(attrs={"style": "overflow: auto"}),
     )
     content_type = ContentTypeFilter(
         label="Page Type",
