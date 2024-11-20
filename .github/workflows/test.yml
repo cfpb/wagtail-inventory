@@ -38,6 +38,9 @@ jobs:
           - python: '3.8'
             django: '4.2'
             wagtail: '6.2'
+          - python: '3.12'
+            django: '5.1'
+            wagtail: '6.3'
 
     steps:
       - uses: actions/checkout@v4
