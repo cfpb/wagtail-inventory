@@ -125,7 +125,7 @@ class TestWagtailHooks(TestCase, WagtailTestUtils):
         self.assertFalse(item.is_shown(insufficient_permissions_request))
 
     def test_register_permissions(self):
-        self.assertQuerysetEqual(
+        self.assertQuerySetEqual(
             register_permissions(),
             Permission.objects.filter(
                 content_type__app_label="wagtailinventory",
