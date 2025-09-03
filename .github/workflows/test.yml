@@ -33,7 +33,7 @@ jobs:
       matrix:
         python: ['3.12','3.13']
         django: ['4.2', '5.1', '5.2']
-        wagtail: ['6.3', '6.4', '7.0']
+        wagtail: ['6.3', '6.4', '7.0', '7.1']
         exclude:
           - python: '3.13'
             django: '4.2'
