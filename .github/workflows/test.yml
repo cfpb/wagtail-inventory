@@ -31,16 +31,14 @@ jobs:
 
     strategy:
       matrix:
-        python: ['3.12', '3.13']
-        django: ['5.1']
-        wagtail: ['6.3', '6.4']
-        include:
-          - python: '3.10'
+        python: ['3.12', '3.14']
+        django: ['4.2', '5.1', '5.2']
+        wagtail: ['6.3', '7.0', '7.2']
+        exclude:
+          - python: '3.14'
             django: '4.2'
-            wagtail: '6.2'
-          - python: '3.13'
-            django: '4.2'
-            wagtail: '6.2'
+          - python: '3.14'
+            django: '5.1'
 
     steps:
       - uses: actions/checkout@v4
