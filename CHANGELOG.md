@@ -1,6 +1,7 @@
 ## Unreleased
 
 - Add support for Wagtail 7.3, 7.4 LTS and Django 6.0.
+- Add support for Python 3.14
 - Drop support for Wagtail 6.3 LTS and 6.4 (both end-of-life) and remove dead Django 1.x/2.x compatibility shim from test URL config.
 - Add explicit `locale` to test page fixtures, required by Wagtail 7.3+.
 
